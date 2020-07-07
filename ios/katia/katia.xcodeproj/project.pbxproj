@@ -14,6 +14,7 @@
 		0F9F4FB724B4947F00165A60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F9F4FB624B4947F00165A60 /* Assets.xcassets */; };
 		0F9F4FBA24B4947F00165A60 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F9F4FB824B4947F00165A60 /* LaunchScreen.storyboard */; };
 		0F9F4FC424B4C86800165A60 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FC324B4C86800165A60 /* UserCell.swift */; };
+		0F9F4FC724B4D18D00165A60 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FC624B4D18D00165A60 /* CustomTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		0F9F4FB924B4947F00165A60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0F9F4FBB24B4947F00165A60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F9F4FC324B4C86800165A60 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		0F9F4FC624B4D18D00165A60 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 		0F9F4FC124B4C59600165A60 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0F9F4FC624B4D18D00165A60 /* CustomTabBarController.swift */,
 				0F9F4FB124B4947D00165A60 /* UserController.swift */,
 			);
 			path = Controllers;
@@ -167,6 +170,7 @@
 			files = (
 				0F9F4FB224B4947D00165A60 /* UserController.swift in Sources */,
 				0F9F4FAE24B4947D00165A60 /* AppDelegate.swift in Sources */,
+				0F9F4FC724B4D18D00165A60 /* CustomTabBarController.swift in Sources */,
 				0F9F4FC424B4C86800165A60 /* UserCell.swift in Sources */,
 				0F9F4FB024B4947D00165A60 /* SceneDelegate.swift in Sources */,
 			);
