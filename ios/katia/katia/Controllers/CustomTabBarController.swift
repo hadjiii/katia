@@ -25,7 +25,11 @@ class CustomTabBarController: UITabBarController {
         let userController = UserController(collectionViewLayout: userControllerLayout)
         let userNavController = createNavControllerWithImage(title: "Users", name: "image", controller: userController)
         
-        viewControllers = [userNavController]
+        let discussionControllerLayout = UICollectionViewFlowLayout()
+        let discussionController = DiscussionController(collectionViewLayout: discussionControllerLayout)
+        let discussionNavController = createNavControllerWithImage(title: "Discussions", name: "image", controller: discussionController)
+        
+        viewControllers = [userNavController, discussionNavController]
     }
     
     private func createNavControllerWithImage(title: String, name:String, controller: UIViewController) -> UINavigationController {
