@@ -29,7 +29,11 @@ class CustomTabBarController: UITabBarController {
         let discussionController = DiscussionController(collectionViewLayout: discussionControllerLayout)
         let discussionNavController = createNavControllerWithImage(title: "Discussions", name: "image", controller: discussionController)
         
-        viewControllers = [userNavController, discussionNavController]
+        let storyControllerLayout = UICollectionViewFlowLayout()
+        let storyController = StoryController(collectionViewLayout: storyControllerLayout)
+        let storyNavController = createNavControllerWithImage(title: "Stories", name: "image", controller: storyController)
+        
+        viewControllers = [userNavController, discussionNavController, storyNavController]
     }
     
     private func createNavControllerWithImage(title: String, name:String, controller: UIViewController) -> UINavigationController {
