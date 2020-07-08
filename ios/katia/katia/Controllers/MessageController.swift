@@ -13,6 +13,12 @@ private let reuseIdentifier = "messageCell"
 class MessageController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     var messages = ["hello", "hi", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.", "Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.", "Sed ut lectus porta augue tempor ornare. Nulla vel nisi sit amet lectus rhoncus aliquet. Donec placerat gravida laoreet."]
     
+    var mediaName: String? {
+        didSet {
+            print("mediaName \(mediaName)")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -110,7 +116,8 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
         let button = UIButton()
         button.setImage(UIImage(named: "image")?.withTintColor(UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1)), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1)
+        button.backgroundColor = UIColor(red: 36/255, green: 52/255, blue: 71/255, alpha: 1)
+        button.addTarget(self, action: #selector(chooseMedia), for: .touchDown)
         return button
     }()
     
@@ -190,6 +197,13 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
             messageTextView.text = nil
             textViewDidChange(messageTextView)
         }
+    }
+    
+    @objc func chooseMedia() {
+        let layout = UICollectionViewFlowLayout()
+        let messageMediaController = MessageMediaController(collectionViewLayout: layout)
+        messageMediaController.messageController = self
+        navigationController?.pushViewController(messageMediaController, animated: true)
     }
 }
 
