@@ -11,7 +11,7 @@ import UIKit
 private let reuseIdentifier = "messageCell"
 
 class MessageController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-    let messages = ["hello", "hi", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.", "Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.", "Sed ut lectus porta augue tempor ornare. Nulla vel nisi sit amet lectus rhoncus aliquet. Donec placerat gravida laoreet."]
+    var messages = ["hello", "hi", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.", "Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.", "Sed ut lectus porta augue tempor ornare. Nulla vel nisi sit amet lectus rhoncus aliquet. Donec placerat gravida laoreet."]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,9 +99,10 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
     
     let sendButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "image")?.withTintColor(UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1)), for: .normal)
+        button.setImage(UIImage(named: "send")?.withTintColor(UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1)), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1)
+        button.backgroundColor = UIColor(red: 36/255, green: 52/255, blue: 71/255, alpha: 1)
+        button.addTarget(self, action: #selector(sendMessage), for: .touchDown)
         return button
     }()
     
@@ -175,6 +176,20 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
     
     @objc func handleKeyboardWillHideNotification(notification: Notification) {
         containerBottomAnchor?.constant = 0
+    }
+    
+    @objc func sendMessage() {
+        if let message = messageTextView.text {
+            if message.isEmpty {
+                return
+            }
+            messages.append(message)
+            let item = messages.count - 1
+            collectionView.insertItems(at: [IndexPath(item: item, section: 0)])
+            collectionView.scrollToItem(at: IndexPath(item: item, section: 0), at: .bottom, animated: true)
+            messageTextView.text = nil
+            textViewDidChange(messageTextView)
+        }
     }
 }
 
