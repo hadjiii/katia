@@ -27,37 +27,40 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
         controlsContainer.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         containerBottomAnchor = controlsContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         containerBottomAnchor?.isActive = true
-        controlsContainer.heightAnchor.constraint(equalToConstant: 41).isActive = true
+        containerHeightAnchor = controlsContainer.heightAnchor.constraint(equalToConstant: 41)
+        containerHeightAnchor?.isActive = true
+        
+        controlsContainer.addSubview(sendButton)
+        sendButton.rightAnchor.constraint(equalTo: controlsContainer.rightAnchor, constant: -10).isActive = true
+        sendButton.bottomAnchor.constraint(equalTo: controlsContainer.bottomAnchor, constant: -10).isActive = true
+        sendButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        sendButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        
+        controlsContainer.addSubview(imageButton)
+        imageButton.leftAnchor.constraint(equalTo: controlsContainer.leftAnchor, constant: 10).isActive = true
+        imageButton.bottomAnchor.constraint(equalTo: controlsContainer.bottomAnchor, constant: -10).isActive = true
+        imageButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        imageButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        
+        controlsContainer.addSubview(messageTextView)
+        messageTextView.leftAnchor.constraint(equalTo: imageButton.rightAnchor, constant: 10).isActive = true
+        messageTextView.rightAnchor.constraint(equalTo: sendButton.leftAnchor, constant: -10).isActive = true
+        messageTextView.topAnchor.constraint(equalTo: controlsContainer.topAnchor).isActive = true
+        messageTextView.bottomAnchor.constraint(equalTo: controlsContainer.bottomAnchor).isActive = true
+        
+        messageTextView.delegate = self
+        
+        controlsContainer.addSubview(messageFieldIndicator)
+        messageFieldIndicator.leftAnchor.constraint(equalTo: imageButton.rightAnchor, constant: 10).isActive = true
+        messageFieldIndicator.rightAnchor.constraint(equalTo: sendButton.leftAnchor, constant: -10).isActive = true
+        messageFieldIndicator.bottomAnchor.constraint(equalTo: messageTextView.bottomAnchor).isActive = true
+        messageFieldIndicator.heightAnchor.constraint(equalToConstant: 1).isActive = true
         
         controlsContainer.addSubview(horizontalSeparator)
         horizontalSeparator.rightAnchor.constraint(equalTo: controlsContainer.rightAnchor).isActive = true
         horizontalSeparator.leftAnchor.constraint(equalTo: controlsContainer.leftAnchor).isActive = true
         horizontalSeparator.topAnchor.constraint(equalTo: controlsContainer.topAnchor).isActive = true
         horizontalSeparator.heightAnchor.constraint(equalToConstant: 0.3).isActive = true
-        
-        controlsContainer.addSubview(sendButton)
-        sendButton.rightAnchor.constraint(equalTo: controlsContainer.rightAnchor, constant: -10).isActive = true
-        sendButton.topAnchor.constraint(equalTo: controlsContainer.topAnchor, constant: 10).isActive = true
-        sendButton.bottomAnchor.constraint(equalTo: controlsContainer.bottomAnchor, constant: -10).isActive = true
-        sendButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        
-        controlsContainer.addSubview(imageButton)
-        imageButton.leftAnchor.constraint(equalTo: controlsContainer.leftAnchor, constant: 10).isActive = true
-        imageButton.topAnchor.constraint(equalTo: controlsContainer.topAnchor, constant: 10).isActive = true
-        imageButton.bottomAnchor.constraint(equalTo: controlsContainer.bottomAnchor, constant: -10).isActive = true
-        imageButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        
-        controlsContainer.addSubview(messageTextField)
-        messageTextField.leftAnchor.constraint(equalTo: imageButton.rightAnchor, constant: 10).isActive = true
-        messageTextField.rightAnchor.constraint(equalTo: sendButton.leftAnchor, constant: -10).isActive = true
-        messageTextField.topAnchor.constraint(equalTo: controlsContainer.topAnchor, constant: 10).isActive = true
-        messageTextField.bottomAnchor.constraint(equalTo: controlsContainer.bottomAnchor, constant: -10).isActive = true
-        
-        controlsContainer.addSubview(messageFieldIndicator)
-        messageFieldIndicator.leftAnchor.constraint(equalTo: imageButton.rightAnchor, constant: 10).isActive = true
-        messageFieldIndicator.rightAnchor.constraint(equalTo: sendButton.leftAnchor, constant: -10).isActive = true
-        messageFieldIndicator.bottomAnchor.constraint(equalTo: messageTextField.bottomAnchor).isActive = true
-        messageFieldIndicator.heightAnchor.constraint(equalToConstant: 1).isActive = true
         
         setupKeyboardObservers()
     }
@@ -69,6 +72,7 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
     }
     
     var containerBottomAnchor: NSLayoutConstraint?
+    var containerHeightAnchor: NSLayoutConstraint?
     
     let controlsContainer: UIView = {
         let container = UIView()
@@ -77,12 +81,13 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
         return container
     }()
     
-    let messageTextField: UITextField = {
-        let textField = UITextField()
-        textField.attributedPlaceholder = NSAttributedString(string: "Start a message", attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray])
-        textField.textColor = .white
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        return textField
+    let messageTextView: UITextView = {
+        let textView = UITextView()
+        textView.textColor = .white
+        textView.backgroundColor = UIColor(red: 36/255, green: 52/255, blue: 71/255, alpha: 1)
+        textView.font = UIFont.preferredFont(forTextStyle: .headline)
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        return textView
     }()
     
     let messageFieldIndicator: UIView = {
@@ -115,8 +120,8 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
         return separator
     }()
     
-    private func estimateFrameFor(text: String) -> CGRect{
-        let size = CGSize(width: 250, height: 1000)
+    private func estimateFrameFor(text: String, width: CGFloat, height: CGFloat) -> CGRect{
+        let size = CGSize(width: width, height: height)
         let drawingOptions = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
         return NSString(string: text).boundingRect(with: size, options: drawingOptions, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)], context: nil)
     }
@@ -128,7 +133,7 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MessageCell
         let text = messages[indexPath.item]
-        let width = estimateFrameFor(text: text).width + 16
+        let width = estimateFrameFor(text: text, width: 250, height: 300).width + 16
         
         cell.bubbleWidthAnchor?.constant = width
         cell.text.text = text
@@ -149,7 +154,7 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let text = messages[indexPath.item]
-        let height = estimateFrameFor(text: text).height + 50
+        let height = estimateFrameFor(text: text, width: 250, height: 300).height + 50
         return CGSize(width: collectionView.frame.width, height: height)
     }
     
@@ -170,5 +175,14 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
     
     @objc func handleKeyboardWillHideNotification(notification: Notification) {
         containerBottomAnchor?.constant = 0
+    }
+}
+
+extension MessageController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        let size = CGSize(width: view.frame.width - 90, height: .infinity)
+        let estimatedHeight = textView.sizeThatFits(size).height
+        let maxHeight: CGFloat = 150
+        containerHeightAnchor?.constant = (estimatedHeight > maxHeight ? maxHeight : estimatedHeight) + 20
     }
 }
