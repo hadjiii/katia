@@ -40,7 +40,7 @@ class UserCell: UICollectionViewCell {
         name.text = "Username"
         name.textColor = .white
         name.translatesAutoresizingMaskIntoConstraints = false
-        name.font = UIFont.systemFont(ofSize: 16)
+        name.font = UIFont.boldSystemFont(ofSize: 16)
         return name
     }()
     
