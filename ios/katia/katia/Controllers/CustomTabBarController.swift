@@ -29,7 +29,7 @@ class CustomTabBarController: UITabBarController {
         let discussionController = DiscussionController(collectionViewLayout: discussionControllerLayout)
         let discussionNavController = createNavControllerWithImage(title: "Discussions", name: "bubble", controller: discussionController)
         
-        viewControllers = [userNavController, discussionNavController]
+        viewControllers = [discussionNavController, userNavController]
         
         guard let items = tabBar.items else {return}
         for item in items {
