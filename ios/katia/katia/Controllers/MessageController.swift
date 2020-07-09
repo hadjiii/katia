@@ -7,15 +7,19 @@
 //
 
 import UIKit
+import Photos
 
 private let reuseIdentifier = "messageCell"
 
 class MessageController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     var messages = ["hello", "hi", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.", "Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.", "Sed ut lectus porta augue tempor ornare. Nulla vel nisi sit amet lectus rhoncus aliquet. Donec placerat gravida laoreet."]
     
-    var mediaName: String? {
+    var messageMedia: PHAsset? {
         didSet {
-            print("mediaName \(mediaName)")
+            containerHeightAnchor?.constant = containerHeightAnchor!.constant + 150
+            messageMediaViewHeightAnchor?.constant = 150
+            imageButtonWidthAnchor?.constant = 0
+            messageMediaView.fetchImage(asset: messageMedia!, contentMode: .aspectFit, targetSize: messageMediaView.frame.size)
         }
     }
     
@@ -36,6 +40,19 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
         containerHeightAnchor = controlsContainer.heightAnchor.constraint(equalToConstant: 41)
         containerHeightAnchor?.isActive = true
         
+        controlsContainer.addSubview(messageMediaView)
+        messageMediaView.rightAnchor.constraint(equalTo: controlsContainer.rightAnchor, constant: -10).isActive = true
+        messageMediaView.leftAnchor.constraint(equalTo: controlsContainer.leftAnchor, constant: 10).isActive = true
+        messageMediaView.topAnchor.constraint(equalTo: controlsContainer.topAnchor, constant: 10).isActive = true
+        messageMediaViewHeightAnchor = messageMediaView.heightAnchor.constraint(equalToConstant: 0)
+        messageMediaViewHeightAnchor?.isActive = true
+        
+        messageMediaView.addSubview(removeMediaButton)
+        removeMediaButton.topAnchor.constraint(equalTo: messageMediaView.topAnchor, constant: 10).isActive = true
+        removeMediaButton.rightAnchor.constraint(equalTo: messageMediaView.rightAnchor, constant: -10).isActive = true
+        removeMediaButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        removeMediaButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        
         controlsContainer.addSubview(sendButton)
         sendButton.rightAnchor.constraint(equalTo: controlsContainer.rightAnchor, constant: -10).isActive = true
         sendButton.bottomAnchor.constraint(equalTo: controlsContainer.bottomAnchor, constant: -10).isActive = true
@@ -45,13 +62,14 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
         controlsContainer.addSubview(imageButton)
         imageButton.leftAnchor.constraint(equalTo: controlsContainer.leftAnchor, constant: 10).isActive = true
         imageButton.bottomAnchor.constraint(equalTo: controlsContainer.bottomAnchor, constant: -10).isActive = true
-        imageButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        imageButtonWidthAnchor = imageButton.widthAnchor.constraint(equalToConstant: 20)
+        imageButtonWidthAnchor?.isActive = true
         imageButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
         controlsContainer.addSubview(messageTextView)
         messageTextView.leftAnchor.constraint(equalTo: imageButton.rightAnchor, constant: 10).isActive = true
         messageTextView.rightAnchor.constraint(equalTo: sendButton.leftAnchor, constant: -10).isActive = true
-        messageTextView.topAnchor.constraint(equalTo: controlsContainer.topAnchor).isActive = true
+        messageTextView.topAnchor.constraint(equalTo: messageMediaView.bottomAnchor).isActive = true
         messageTextView.bottomAnchor.constraint(equalTo: controlsContainer.bottomAnchor).isActive = true
         
         messageTextView.delegate = self
@@ -79,6 +97,8 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
     
     var containerBottomAnchor: NSLayoutConstraint?
     var containerHeightAnchor: NSLayoutConstraint?
+    var messageMediaViewHeightAnchor: NSLayoutConstraint?
+    var imageButtonWidthAnchor: NSLayoutConstraint?
     
     let controlsContainer: UIView = {
         let container = UIView()
@@ -126,6 +146,25 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
         separator.backgroundColor = UIColor(red: 101/255, green: 119/255, blue: 134/255, alpha: 1)
         separator.translatesAutoresizingMaskIntoConstraints = false
         return separator
+    }()
+    
+    let messageMediaView: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints  = false
+        view.backgroundColor = UIColor(red: 101/255, green: 119/255, blue: 134/255, alpha: 0.2)
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = 10
+        return view
+    }()
+    
+    let removeMediaButton: UIButton = {
+        let button = UIButton(type: .close)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2)
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(removeMedia), for: .touchDown)
+        return button
     }()
     
     private func estimateFrameFor(text: String, width: CGFloat, height: CGFloat) -> CGRect{
@@ -204,6 +243,16 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
         let messageMediaController = MessageMediaController(collectionViewLayout: layout)
         messageMediaController.messageController = self
         navigationController?.pushViewController(messageMediaController, animated: true)
+    }
+    
+    func showMessageMedia() {
+        
+    }
+    
+    @objc func removeMedia() {
+        containerHeightAnchor?.constant = containerHeightAnchor!.constant - 150
+        messageMediaViewHeightAnchor?.constant = 0
+        imageButtonWidthAnchor?.constant = 20
     }
 }
 
