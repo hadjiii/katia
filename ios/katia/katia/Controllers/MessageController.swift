@@ -129,7 +129,7 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
     
     let sendButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "send")?.withTintColor(UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1)), for: .normal)
+        button.setImage(UIImage(named: "normal/send")?.withTintColor(UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1)), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor(red: 36/255, green: 52/255, blue: 71/255, alpha: 1)
         button.addTarget(self, action: #selector(sendMessage), for: .touchDown)
@@ -138,7 +138,7 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
     
     let imageButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "image")?.withTintColor(UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1)), for: .normal)
+        button.setImage(UIImage(named: "normal/photo")?.withTintColor(UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1)), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor(red: 36/255, green: 52/255, blue: 71/255, alpha: 1)
         button.addTarget(self, action: #selector(chooseMedia), for: .touchDown)
