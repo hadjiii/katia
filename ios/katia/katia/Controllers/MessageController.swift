@@ -23,6 +23,12 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
         }
     }
     
+    var userName: String? {
+        didSet {
+            navigationItem.title = userName
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -250,6 +256,7 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
     }
     
     @objc func removeMedia() {
+        print("removeMedia")
         containerHeightAnchor?.constant = containerHeightAnchor!.constant - 150
         messageMediaViewHeightAnchor?.constant = 0
         imageButtonWidthAnchor?.constant = 20

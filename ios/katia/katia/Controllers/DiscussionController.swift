@@ -34,7 +34,10 @@ class DiscussionController: UICollectionViewController, UICollectionViewDelegate
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("selected")
+        let layout = UICollectionViewFlowLayout()
+        let messageController = MessageController(collectionViewLayout: layout)
+        navigationController?.pushViewController(messageController, animated: true)
+        messageController.userName = "Username"
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
