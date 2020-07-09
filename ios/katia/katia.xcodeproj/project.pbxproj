@@ -21,6 +21,7 @@
 		0F9F4FD324B4F1EF00165A60 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FD224B4F1EF00165A60 /* MessageCell.swift */; };
 		0F9F4FD524B66CDF00165A60 /* MessageMediaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FD424B66CDF00165A60 /* MessageMediaController.swift */; };
 		0F9F4FD724B66FA700165A60 /* MessageMediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FD624B66FA700165A60 /* MessageMediaCell.swift */; };
+		0F9F4FDA24B6D2AD00165A60 /* UIImageView+fetchImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FD924B6D2AD00165A60 /* UIImageView+fetchImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		0F9F4FD224B4F1EF00165A60 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		0F9F4FD424B66CDF00165A60 /* MessageMediaController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageMediaController.swift; sourceTree = "<group>"; };
 		0F9F4FD624B66FA700165A60 /* MessageMediaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageMediaCell.swift; sourceTree = "<group>"; };
+		0F9F4FD924B6D2AD00165A60 /* UIImageView+fetchImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+fetchImage.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 		0F9F4FAC24B4947D00165A60 /* katia */ = {
 			isa = PBXGroup;
 			children = (
+				0F9F4FD824B6D27900165A60 /* Extensions */,
 				0F9F4FC524B4C98E00165A60 /* Helpers */,
 				0F9F4FC224B4C82A00165A60 /* Views */,
 				0F9F4FC124B4C59600165A60 /* Controllers */,
@@ -113,6 +116,14 @@
 			children = (
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		0F9F4FD824B6D27900165A60 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0F9F4FD924B6D2AD00165A60 /* UIImageView+fetchImage.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,6 +204,7 @@
 				0F9F4FC724B4D18D00165A60 /* CustomTabBarController.swift in Sources */,
 				0F9F4FC924B4D94E00165A60 /* DiscussionController.swift in Sources */,
 				0F9F4FD524B66CDF00165A60 /* MessageMediaController.swift in Sources */,
+				0F9F4FDA24B6D2AD00165A60 /* UIImageView+fetchImage.swift in Sources */,
 				0F9F4FD724B66FA700165A60 /* MessageMediaCell.swift in Sources */,
 				0F9F4FC424B4C86800165A60 /* UserCell.swift in Sources */,
 				0F9F4FB024B4947D00165A60 /* SceneDelegate.swift in Sources */,
