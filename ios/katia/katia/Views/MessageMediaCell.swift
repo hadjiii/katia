@@ -12,7 +12,7 @@ class MessageMediaCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .black
+        backgroundColor = UIColor(red: 101/255, green: 119/255, blue: 134/255, alpha: 0.2)
         
         addSubview(image)
         image.leftAnchor.constraint(equalTo: leftAnchor, constant: 2).isActive = true
@@ -29,6 +29,7 @@ class MessageMediaCell: UICollectionViewCell {
         let img = UIImageView(image: UIImage(named: "image"))
         img.translatesAutoresizingMaskIntoConstraints = false
         img.backgroundColor = UIColor(red: 36/255, green: 52/255, blue: 71/255, alpha: 1)
+        img.clipsToBounds = true
         return img
     }()
 }
