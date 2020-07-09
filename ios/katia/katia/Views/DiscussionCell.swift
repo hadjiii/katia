@@ -56,8 +56,8 @@ class DiscussionCell: UICollectionViewCell {
         return label
     }()
     
-    let photo: UIView = {
-        let avatar = UIView()
+    let photo: UIImageView = {
+        let avatar = UIImageView(image: UIImage(named: "normal/user"))
         avatar.translatesAutoresizingMaskIntoConstraints = false
         avatar.layer.cornerRadius = 25
         avatar.layer.masksToBounds = true

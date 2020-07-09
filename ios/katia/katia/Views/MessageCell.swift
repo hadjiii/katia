@@ -55,8 +55,8 @@ class MessageCell: UICollectionViewCell {
     var dateLeftAnchor: NSLayoutConstraint?
     var dateRightAnchor: NSLayoutConstraint?
     
-    let destAvatar: UIView = {
-        let avatar = UIView()
+    let destAvatar: UIImageView = {
+        let avatar = UIImageView(image: UIImage(named: "normal/user"))
         avatar.translatesAutoresizingMaskIntoConstraints = false
         avatar.backgroundColor = .lightGray
         avatar.layer.cornerRadius = 20
