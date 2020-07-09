@@ -32,7 +32,6 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tabBarController?.tabBar.isHidden = true
         collectionView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 40, right: 0)
         collectionView.backgroundColor = UIColor(red: 36/255, green: 52/255, blue: 71/255, alpha: 1)
         collectionView.register(MessageCell.self, forCellWithReuseIdentifier: reuseIdentifier)
@@ -97,7 +96,6 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        tabBarController?.tabBar.isHidden = false
         removeKeyboardObservers()
     }
     
