@@ -9,7 +9,7 @@
 import UIKit
 
 class UserController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,7 +21,7 @@ class UserController: UICollectionViewController, UICollectionViewDelegateFlowLa
             flowLayout.minimumLineSpacing = 0
         }
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 20
     }
@@ -36,7 +36,10 @@ class UserController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.item)
+        let layout = UICollectionViewFlowLayout()
+        let messageController = MessageController(collectionViewLayout: layout)
+        messageController.userName = "Username"
+        navigationController?.pushViewController(messageController, animated: true)
     }
 }
 

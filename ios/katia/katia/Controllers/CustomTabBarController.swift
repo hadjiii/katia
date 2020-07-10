@@ -23,11 +23,11 @@ class CustomTabBarController: UITabBarController {
         
         let userControllerLayout = UICollectionViewFlowLayout()
         let userController = UserController(collectionViewLayout: userControllerLayout)
-        let userNavController = createNavControllerWithImage(title: "Users", name: "image", controller: userController)
+        let userNavController = createNavControllerWithImage(title: "Users", name: "users", controller: userController)
         
         let discussionControllerLayout = UICollectionViewFlowLayout()
         let discussionController = DiscussionController(collectionViewLayout: discussionControllerLayout)
-        let discussionNavController = createNavControllerWithImage(title: "Discussions", name: "image", controller: discussionController)
+        let discussionNavController = createNavControllerWithImage(title: "Discussions", name: "bubble", controller: discussionController)
         
         let storyControllerLayout = UICollectionViewFlowLayout()
         let storyController = StoryController(collectionViewLayout: storyControllerLayout)
@@ -38,7 +38,7 @@ class CustomTabBarController: UITabBarController {
     
     private func createNavControllerWithImage(title: String, name:String, controller: UIViewController) -> UINavigationController {
         let navController = UINavigationController(rootViewController: controller)
-        navController.tabBarItem = UITabBarItem(title: title, image: UIImage(named: name), selectedImage: UIImage(named: name))
+        navController.tabBarItem = UITabBarItem(title: title, image: UIImage(named: "normal/\(name)"), selectedImage: UIImage(named: "selected/\(name)"))
             
         return navController
     }
