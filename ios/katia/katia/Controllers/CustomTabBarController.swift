@@ -31,7 +31,7 @@ class CustomTabBarController: UITabBarController {
         
         let storyControllerLayout = UICollectionViewFlowLayout()
         let storyController = StoryController(collectionViewLayout: storyControllerLayout)
-        let storyNavController = createNavControllerWithImage(title: "Stories", name: "image", controller: storyController)
+        let storyNavController = createNavControllerWithImage(title: "Stories", name: "film", controller: storyController)
         
         viewControllers = [userNavController, discussionNavController, storyNavController]
     }

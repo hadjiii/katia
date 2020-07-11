@@ -17,13 +17,16 @@
 		0F9F4FC724B4D18D00165A60 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FC624B4D18D00165A60 /* CustomTabBarController.swift */; };
 		0F9F4FC924B4D94E00165A60 /* DiscussionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FC824B4D94E00165A60 /* DiscussionController.swift */; };
 		0F9F4FCB24B4DB1A00165A60 /* DiscussionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FCA24B4DB1A00165A60 /* DiscussionCell.swift */; };
+		0F9F4FCD24B4E83800165A60 /* StoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FCC24B4E83800165A60 /* StoryController.swift */; };
+		0F9F4FCF24B4EB3B00165A60 /* StoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FCE24B4EB3B00165A60 /* StoryCell.swift */; };
 		0F9F4FD124B4F19200165A60 /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FD024B4F19200165A60 /* MessageController.swift */; };
 		0F9F4FD324B4F1EF00165A60 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FD224B4F1EF00165A60 /* MessageCell.swift */; };
 		0F9F4FD524B66CDF00165A60 /* MessageMediaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FD424B66CDF00165A60 /* MessageMediaController.swift */; };
 		0F9F4FD724B66FA700165A60 /* MessageMediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FD624B66FA700165A60 /* MessageMediaCell.swift */; };
 		0F9F4FDA24B6D2AD00165A60 /* UIImageView+fetchImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FD924B6D2AD00165A60 /* UIImageView+fetchImage.swift */; };
-		0F9F4FCD24B4E83800165A60 /* StoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FCC24B4E83800165A60 /* StoryController.swift */; };
-		0F9F4FCF24B4EB3B00165A60 /* StoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FCE24B4EB3B00165A60 /* StoryCell.swift */; };
+		0F9F4FEB24B9181A00165A60 /* StorySectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FEA24B9181A00165A60 /* StorySectionHeaderView.swift */; };
+		0F9F4FED24B9205A00165A60 /* ShowStoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FEC24B9205A00165A60 /* ShowStoryController.swift */; };
+		0F9F4FEF24B9211700165A60 /* ShowStoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FEE24B9211700165A60 /* ShowStoryCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +49,9 @@
 		0F9F4FD424B66CDF00165A60 /* MessageMediaController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageMediaController.swift; sourceTree = "<group>"; };
 		0F9F4FD624B66FA700165A60 /* MessageMediaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageMediaCell.swift; sourceTree = "<group>"; };
 		0F9F4FD924B6D2AD00165A60 /* UIImageView+fetchImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+fetchImage.swift"; sourceTree = "<group>"; };
+		0F9F4FEA24B9181A00165A60 /* StorySectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorySectionHeaderView.swift; sourceTree = "<group>"; };
+		0F9F4FEC24B9205A00165A60 /* ShowStoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowStoryController.swift; sourceTree = "<group>"; };
+		0F9F4FEE24B9211700165A60 /* ShowStoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowStoryCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +107,7 @@
 				0F9F4FCC24B4E83800165A60 /* StoryController.swift */,
 				0F9F4FD024B4F19200165A60 /* MessageController.swift */,
 				0F9F4FD424B66CDF00165A60 /* MessageMediaController.swift */,
+				0F9F4FEC24B9205A00165A60 /* ShowStoryController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -113,6 +120,8 @@
 				0F9F4FCE24B4EB3B00165A60 /* StoryCell.swift */,
 				0F9F4FD224B4F1EF00165A60 /* MessageCell.swift */,
 				0F9F4FD624B66FA700165A60 /* MessageMediaCell.swift */,
+				0F9F4FEA24B9181A00165A60 /* StorySectionHeaderView.swift */,
+				0F9F4FEE24B9211700165A60 /* ShowStoryCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -213,9 +222,12 @@
 				0F9F4FC924B4D94E00165A60 /* DiscussionController.swift in Sources */,
 				0F9F4FD524B66CDF00165A60 /* MessageMediaController.swift in Sources */,
 				0F9F4FDA24B6D2AD00165A60 /* UIImageView+fetchImage.swift in Sources */,
+				0F9F4FED24B9205A00165A60 /* ShowStoryController.swift in Sources */,
 				0F9F4FD724B66FA700165A60 /* MessageMediaCell.swift in Sources */,
 				0F9F4FC424B4C86800165A60 /* UserCell.swift in Sources */,
+				0F9F4FEB24B9181A00165A60 /* StorySectionHeaderView.swift in Sources */,
 				0F9F4FB024B4947D00165A60 /* SceneDelegate.swift in Sources */,
+				0F9F4FEF24B9211700165A60 /* ShowStoryCell.swift in Sources */,
 				0F9F4FD324B4F1EF00165A60 /* MessageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

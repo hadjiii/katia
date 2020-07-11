@@ -9,14 +9,19 @@
 import UIKit
 
 private let reuseIdentifier = "storyCell"
+private let headerReuseIdentifier = "storyHeaderCell"
+
 
 class StoryController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "Stories"
+        
         collectionView.backgroundColor = UIColor(red: 36/255, green: 52/255, blue: 71/255, alpha: 1)
         collectionView.register(StoryCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.register(StorySectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerReuseIdentifier)
         
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.scrollDirection = .vertical
@@ -31,9 +36,16 @@ class StoryController: UICollectionViewController, UICollectionViewDelegateFlowL
         
         mediaButton.addTarget(self, action: #selector(newStory), for: .touchDown)
     }
-
+    
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 3
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        if section == 0 {
+            return 1
+        }
+        return 5
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -41,16 +53,35 @@ class StoryController: UICollectionViewController, UICollectionViewDelegateFlowL
         return cell
     }
     
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        if kind == UICollectionView.elementKindSectionHeader {
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier, for: indexPath)
+            return header
+        }
+        return UICollectionReusableView()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if section == 0 {
+            return CGSize(width: collectionView.frame.width, height: 0)
+        }
+        return CGSize(width: collectionView.frame.width, height: 30)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: 70)
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.item)
+        let layout = UICollectionViewFlowLayout()
+        let showStoryController = ShowStoryController(collectionViewLayout: layout)
+        navigationController?.pushViewController(showStoryController, animated: true)
     }
     
     let mediaButton: UIButton = {
         let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "selected/camera")?.withTintColor(.white), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1)
         button.layer.masksToBounds = true
