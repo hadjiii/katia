@@ -56,6 +56,8 @@ class StoryCell: UICollectionViewCell {
         avatar.layer.cornerRadius = 25
         avatar.layer.masksToBounds = true
         avatar.backgroundColor = .darkGray
+        avatar.layer.borderWidth = 2
+        avatar.layer.borderColor = UIColor(red: 101/255, green: 119/255, blue: 134/255, alpha: 1).cgColor
         return avatar
     }()
     
