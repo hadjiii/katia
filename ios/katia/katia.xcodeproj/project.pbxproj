@@ -27,6 +27,7 @@
 		0F9F4FEB24B9181A00165A60 /* StorySectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FEA24B9181A00165A60 /* StorySectionHeaderView.swift */; };
 		0F9F4FED24B9205A00165A60 /* ShowStoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FEC24B9205A00165A60 /* ShowStoryController.swift */; };
 		0F9F4FEF24B9211700165A60 /* ShowStoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FEE24B9211700165A60 /* ShowStoryCell.swift */; };
+		0F9F4FF424BBB6C000165A60 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FF324BBB6C000165A60 /* Story.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		0F9F4FEA24B9181A00165A60 /* StorySectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorySectionHeaderView.swift; sourceTree = "<group>"; };
 		0F9F4FEC24B9205A00165A60 /* ShowStoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowStoryController.swift; sourceTree = "<group>"; };
 		0F9F4FEE24B9211700165A60 /* ShowStoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowStoryCell.swift; sourceTree = "<group>"; };
+		0F9F4FF324BBB6C000165A60 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 		0F9F4FAC24B4947D00165A60 /* katia */ = {
 			isa = PBXGroup;
 			children = (
+				0F9F4FF224BBB6AA00165A60 /* Models */,
 				0F9F4FD824B6D27900165A60 /* Extensions */,
 				0F9F4FC524B4C98E00165A60 /* Helpers */,
 				0F9F4FC224B4C82A00165A60 /* Views */,
@@ -139,6 +142,14 @@
 				0F9F4FD924B6D2AD00165A60 /* UIImageView+fetchImage.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0F9F4FF224BBB6AA00165A60 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0F9F4FF324BBB6C000165A60 /* Story.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,6 +232,7 @@
 				0F9F4FCF24B4EB3B00165A60 /* StoryCell.swift in Sources */,
 				0F9F4FC924B4D94E00165A60 /* DiscussionController.swift in Sources */,
 				0F9F4FD524B66CDF00165A60 /* MessageMediaController.swift in Sources */,
+				0F9F4FF424BBB6C000165A60 /* Story.swift in Sources */,
 				0F9F4FDA24B6D2AD00165A60 /* UIImageView+fetchImage.swift in Sources */,
 				0F9F4FED24B9205A00165A60 /* ShowStoryController.swift in Sources */,
 				0F9F4FD724B66FA700165A60 /* MessageMediaCell.swift in Sources */,
