@@ -7,51 +7,24 @@
 //
 
 import UIKit
+import Photos
 
 private let reuseIdentifier = "storyCell"
 private let headerReuseIdentifier = "storyHeaderCell"
 
 
 class StoryController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-    
+    var storyMedia: PHAsset? {
+        didSet {
+            Data.stories["myStories"]?.append([Story(username: "Me", mediaType: MediaType.video, medialink: "https://katiapp.s3.amazonaws.com/test.mp4", date: "yesterday", status: Status.read)])
+            stories = Data.stories
+            collectionView.reloadData()
+        }
+    }
     var sectionTitles = [String]()
     let recentSectionTitle = "Recent"
     let readSectionTitle = "Read"
-    let stories = [
-        "myStories": [],
-        "recent": [
-            [
-                Story(username: "Username1", mediaType: MediaType.image, medialink: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/250px-Image_created_with_a_mobile_phone.png", date: "today", status: Status.unread),
-                Story(username: "Username1", mediaType: MediaType.image, medialink: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/250px-Image_created_with_a_mobile_phone.png", date: "yesterday", status: Status.read)
-            ],
-            [
-                Story(username: "Username2", mediaType: MediaType.video, medialink: "https://katiapp.s3.amazonaws.com/test.mp4", date: "yesterday", status: Status.read),
-                Story(username: "Username2", mediaType: MediaType.video, medialink: "https://katiapp.s3.amazonaws.com/test.mp4", date: "yesterday", status: Status.read),
-            ],
-            [
-                Story(username: "Username3", mediaType: MediaType.image, medialink: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/250px-Image_created_with_a_mobile_phone.png", date: "yesterday", status: Status.unread),
-                Story(username: "Username3", mediaType: MediaType.video, medialink: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", date: "yesterday", status: Status.read),
-                Story(username: "Username3", mediaType: MediaType.video, medialink: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", date: "yesterday", status: Status.read),
-                Story(username: "Username3", mediaType: MediaType.image, medialink: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/250px-Image_created_with_a_mobile_phone.png", date: "yesterday", status: Status.unread),
-                Story(username: "Username3", mediaType: MediaType.video, medialink: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", date: "yesterday", status: Status.read),
-                Story(username: "Username3", mediaType: MediaType.image, medialink: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/250px-Image_created_with_a_mobile_phone.png", date: "yesterday", status: Status.read)
-            ]
-        ],
-        "read": [
-            [
-                Story(username: "Username4", mediaType: MediaType.image, medialink: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/250px-Image_created_with_a_mobile_phone.png", date: "today", status: Status.unread),
-                Story(username: "Username4", mediaType: MediaType.image, medialink: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/250px-Image_created_with_a_mobile_phone.png", date: "yesterday", status: Status.read)
-            ],
-            [
-                Story(username: "Username5", mediaType: MediaType.image, medialink: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/250px-Image_created_with_a_mobile_phone.png", date: "yesterday", status: Status.unread),
-                Story(username: "Username5", mediaType: MediaType.video, medialink: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", date: "yesterday", status: Status.read),
-                Story(username: "Username5", mediaType: MediaType.video, medialink: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", date: "yesterday", status: Status.read),
-                Story(username: "Username5", mediaType: MediaType.image, medialink: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/250px-Image_created_with_a_mobile_phone.png", date: "yesterday", status: Status.unread),
-                Story(username: "Username5", mediaType: MediaType.video, medialink: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", date: "yesterday", status: Status.read),
-                Story(username: "Username5", mediaType: MediaType.image, medialink: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/250px-Image_created_with_a_mobile_phone.png", date: "yesterday", status: Status.read)
-            ]
-        ]
-    ]
+    var stories = Data.stories
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,8 +45,6 @@ class StoryController: UICollectionViewController, UICollectionViewDelegateFlowL
         mediaButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30).isActive = true
         mediaButton.widthAnchor.constraint(equalToConstant: 56).isActive = true
         mediaButton.heightAnchor.constraint(equalToConstant: 56).isActive = true
-        
-        mediaButton.addTarget(self, action: #selector(newStory), for: .touchDown)
         
         if let recentStories =  stories["recent"] {
             if !recentStories.isEmpty {
@@ -112,9 +83,9 @@ class StoryController: UICollectionViewController, UICollectionViewDelegateFlowL
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! StoryCell
         
         if section == 0 {
-            let myStories = stories["myStories"]
-            if myStories!.isEmpty {
-                cell.name.text = "My Stories"
+            cell.name.text = "My Stories"
+            cell.photo.layer.borderColor = UIColor(red: 101/255, green: 119/255, blue: 134/255, alpha: 1).cgColor
+            if let myStories = stories["myStories"], myStories.isEmpty {
                 cell.date.text = "Press to add a new story"
             }
         }
@@ -131,6 +102,7 @@ class StoryController: UICollectionViewController, UICollectionViewDelegateFlowL
                 let lastStoriesPerUser = readSectionStories![item].last
                 cell.name.text = lastStoriesPerUser?.username
                 cell.date.text = lastStoriesPerUser?.date
+                cell.photo.layer.borderColor = UIColor(red: 101/255, green: 119/255, blue: 134/255, alpha: 1).cgColor
             }
         }
         else {
@@ -138,6 +110,7 @@ class StoryController: UICollectionViewController, UICollectionViewDelegateFlowL
             let lastStoriesPerUser = readSectionStories![item].last
             cell.name.text = lastStoriesPerUser?.username
             cell.date.text = lastStoriesPerUser?.date
+            cell.photo.layer.borderColor = UIColor(red: 101/255, green: 119/255, blue: 134/255, alpha: 1).cgColor
         }
         
         return cell
@@ -173,10 +146,10 @@ class StoryController: UICollectionViewController, UICollectionViewDelegateFlowL
         if section == 0 {
             let currentUserStories = stories["myStories"]
             if currentUserStories!.isEmpty {
-                print("add a new story")
+                newStory()
                 return
             }
-            showStoryController.stories = currentUserStories?[indexPath.item]
+            showStoryController.stories = currentUserStories?.flatMap{$0}
         }
         else if section == 1 {
             let userStories = stories["recent"]?[indexPath.item]
@@ -196,11 +169,15 @@ class StoryController: UICollectionViewController, UICollectionViewDelegateFlowL
         button.backgroundColor = UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1)
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 28
+        button.addTarget(self, action: #selector(newStory), for: .touchDown)
         return button
     }()
     
     @objc private func newStory() {
-        print("new story")
+        let layout = UICollectionViewFlowLayout()
+        let storyMediaController = StoryMediaController(collectionViewLayout: layout)
+        storyMediaController.storyController = self
+        navigationController?.pushViewController(storyMediaController, animated: true)
     }
 }
 
