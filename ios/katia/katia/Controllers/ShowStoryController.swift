@@ -24,6 +24,9 @@ class ShowStoryController: UICollectionViewController, UICollectionViewDelegateF
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tabBarController?.tabBar.isHidden = true
+        extendedLayoutIncludesOpaqueBars = true
+        
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.register(ShowStoryCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.backgroundColor = UIColor(red: 36/255, green: 52/255, blue: 71/255, alpha: 1)
@@ -45,6 +48,11 @@ class ShowStoryController: UICollectionViewController, UICollectionViewDelegateF
         ]
         
         NSLayoutConstraint.activate(constraints)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tabBarController?.tabBar.isHidden = false
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
