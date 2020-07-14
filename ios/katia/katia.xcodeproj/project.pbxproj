@@ -29,6 +29,9 @@
 		0F9F4FEF24B9211700165A60 /* ShowStoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FEE24B9211700165A60 /* ShowStoryCell.swift */; };
 		0F9F4FF424BBB6C000165A60 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FF324BBB6C000165A60 /* Story.swift */; };
 		0F9F4FF724BCFD3E00165A60 /* ShowStoryCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FF624BCFD3E00165A60 /* ShowStoryCellDelegate.swift */; };
+		0F9F4FFB24BE508B00165A60 /* StoryMediaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FFA24BE508B00165A60 /* StoryMediaController.swift */; };
+		0F9F4FFD24BE517700165A60 /* StoryMediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FFC24BE517700165A60 /* StoryMediaCell.swift */; };
+		0F9F500024BE5F4000165A60 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FFF24BE5F4000165A60 /* Data.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +59,9 @@
 		0F9F4FEE24B9211700165A60 /* ShowStoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowStoryCell.swift; sourceTree = "<group>"; };
 		0F9F4FF324BBB6C000165A60 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		0F9F4FF624BCFD3E00165A60 /* ShowStoryCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowStoryCellDelegate.swift; sourceTree = "<group>"; };
+		0F9F4FFA24BE508B00165A60 /* StoryMediaController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryMediaController.swift; sourceTree = "<group>"; };
+		0F9F4FFC24BE517700165A60 /* StoryMediaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryMediaCell.swift; sourceTree = "<group>"; };
+		0F9F4FFF24BE5F4000165A60 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +94,7 @@
 		0F9F4FAC24B4947D00165A60 /* katia */ = {
 			isa = PBXGroup;
 			children = (
+				0F9F4FFE24BE5F2700165A60 /* Mock */,
 				0F9F4FF524BCFD0F00165A60 /* Delegates */,
 				0F9F4FF224BBB6AA00165A60 /* Models */,
 				0F9F4FD824B6D27900165A60 /* Extensions */,
@@ -114,6 +121,7 @@
 				0F9F4FD024B4F19200165A60 /* MessageController.swift */,
 				0F9F4FD424B66CDF00165A60 /* MessageMediaController.swift */,
 				0F9F4FEC24B9205A00165A60 /* ShowStoryController.swift */,
+				0F9F4FFA24BE508B00165A60 /* StoryMediaController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -128,6 +136,7 @@
 				0F9F4FD624B66FA700165A60 /* MessageMediaCell.swift */,
 				0F9F4FEA24B9181A00165A60 /* StorySectionHeaderView.swift */,
 				0F9F4FEE24B9211700165A60 /* ShowStoryCell.swift */,
+				0F9F4FFC24BE517700165A60 /* StoryMediaCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -161,6 +170,14 @@
 				0F9F4FF624BCFD3E00165A60 /* ShowStoryCellDelegate.swift */,
 			);
 			path = Delegates;
+			sourceTree = "<group>";
+		};
+		0F9F4FFE24BE5F2700165A60 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				0F9F4FFF24BE5F4000165A60 /* Data.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,6 +255,7 @@
 				0F9F4FB224B4947D00165A60 /* UserController.swift in Sources */,
 				0F9F4FCB24B4DB1A00165A60 /* DiscussionCell.swift in Sources */,
 				0F9F4FAE24B4947D00165A60 /* AppDelegate.swift in Sources */,
+				0F9F4FFD24BE517700165A60 /* StoryMediaCell.swift in Sources */,
 				0F9F4FD124B4F19200165A60 /* MessageController.swift in Sources */,
 				0F9F4FC724B4D18D00165A60 /* CustomTabBarController.swift in Sources */,
 				0F9F4FCF24B4EB3B00165A60 /* StoryCell.swift in Sources */,
@@ -248,10 +266,12 @@
 				0F9F4FDA24B6D2AD00165A60 /* UIImageView+fetchImage.swift in Sources */,
 				0F9F4FED24B9205A00165A60 /* ShowStoryController.swift in Sources */,
 				0F9F4FD724B66FA700165A60 /* MessageMediaCell.swift in Sources */,
+				0F9F500024BE5F4000165A60 /* Data.swift in Sources */,
 				0F9F4FC424B4C86800165A60 /* UserCell.swift in Sources */,
 				0F9F4FEB24B9181A00165A60 /* StorySectionHeaderView.swift in Sources */,
 				0F9F4FB024B4947D00165A60 /* SceneDelegate.swift in Sources */,
 				0F9F4FEF24B9211700165A60 /* ShowStoryCell.swift in Sources */,
+				0F9F4FFB24BE508B00165A60 /* StoryMediaController.swift in Sources */,
 				0F9F4FD324B4F1EF00165A60 /* MessageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
