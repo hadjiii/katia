@@ -35,12 +35,14 @@ class StoryMediaController: UICollectionViewController, UICollectionViewDelegate
         switch photoAuthorizationStatus {
         case .authorized:
             let fetchOptions = PHFetchOptions()
+            fetchOptions.predicate = NSPredicate(format: "mediaType == %d || mediaType == %d", argumentArray: [PHAssetMediaType.image.rawValue, PHAssetMediaType.video.rawValue])
             self.medias = PHAsset.fetchAssets(with: fetchOptions)
         case .notDetermined:
             PHPhotoLibrary.requestAuthorization { (status) in
                 switch status {
                 case .authorized:
                     let fetchOptions = PHFetchOptions()
+                    fetchOptions.predicate = NSPredicate(format: "mediaType == %d || mediaType == %d", argumentArray: [PHAssetMediaType.image.rawValue, PHAssetMediaType.video.rawValue])
                     self.medias = PHAsset.fetchAssets(with: fetchOptions)
                 default:
                     self.present(self.alertController, animated: true, completion: nil)
