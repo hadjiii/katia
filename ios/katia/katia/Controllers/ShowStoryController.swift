@@ -24,6 +24,9 @@ class ShowStoryController: UICollectionViewController, UICollectionViewDelegateF
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        
         tabBarController?.tabBar.isHidden = true
         extendedLayoutIncludesOpaqueBars = true
         
@@ -52,6 +55,10 @@ class ShowStoryController: UICollectionViewController, UICollectionViewDelegateF
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
+        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        navigationController?.navigationBar.shadowImage = nil
+        
         tabBarController?.tabBar.isHidden = false
     }
     
