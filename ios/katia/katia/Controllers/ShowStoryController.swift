@@ -46,7 +46,7 @@ class ShowStoryController: UICollectionViewController, UICollectionViewDelegateF
         let constraints = [
             pageControl.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
             pageControl.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
-            pageControl.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            pageControl.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
             pageControl.heightAnchor.constraint(equalToConstant: 2)
         ]
         
