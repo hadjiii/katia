@@ -80,6 +80,14 @@ class StoryMediaController: UICollectionViewController, UICollectionViewDelegate
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let asset = medias?.object(at: indexPath.row)
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! StoryMediaCell
+        
+        if let duration =  asset?.duration, duration.isLessThanOrEqualTo(0) {
+            cell.isVideo = false
+        }
+        else {
+            cell.isVideo = true
+        }
+        
         cell.image.fetchImage(asset: asset!, contentMode: .aspectFill, targetSize: cell.image.frame.size)
         return cell
     }
