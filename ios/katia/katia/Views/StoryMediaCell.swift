@@ -31,7 +31,7 @@ class StoryMediaCell: UICollectionViewCell {
         image.leftAnchor.constraint(equalTo: leftAnchor, constant: 2).isActive = true
         image.rightAnchor.constraint(equalTo: rightAnchor, constant: -2).isActive = true
         image.topAnchor.constraint(equalTo: topAnchor, constant: 2).isActive = true
-        image.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 2).isActive = true
+        image.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2).isActive = true
         
         videoIconView.leftAnchor.constraint(equalTo: leftAnchor, constant: 10).isActive = true
         videoIconView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
