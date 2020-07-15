@@ -62,6 +62,10 @@ class ShowStoryController: UICollectionViewController, UICollectionViewDelegateF
         tabBarController?.tabBar.isHidden = false
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ShowStoryCell
         cell.story = stories![indexPath.item]
