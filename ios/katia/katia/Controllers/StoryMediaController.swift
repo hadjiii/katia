@@ -94,8 +94,10 @@ class StoryMediaController: UICollectionViewController, UICollectionViewDelegate
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyMedia = medias?.object(at: indexPath.item)
-        storyController?.storyMedia = storyMedia
-        navigationController?.popViewController(animated: true)
+        let storyMediaPreviewController = StoryMediaPreviewController()
+        
+        storyMediaPreviewController.storyMedia = storyMedia
+        navigationController?.pushViewController(storyMediaPreviewController, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
