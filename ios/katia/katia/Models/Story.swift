@@ -11,8 +11,8 @@ import Foundation
 struct Story {
     var username: String
     var mediaType: MediaType
-    var medialink: String
-    var date: String
+    var medialink: String?
+    var date: String?
     var status: Status
 }
 
