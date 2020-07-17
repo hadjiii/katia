@@ -14,9 +14,10 @@ private let headerReuseIdentifier = "storyHeaderCell"
 
 
 class StoryController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-    var storyMedia: PHAsset? {
+    var story: Story? {
         didSet {
-            Data.stories["myStories"]?.append([Story(username: "Me", mediaType: MediaType.video, medialink: "https://katiapp.s3.amazonaws.com/test.mp4", date: "yesterday", status: Status.read)])
+            guard let story = story  else { return }
+            Data.stories["myStories"]?.append([story])
             stories = Data.stories
             collectionView.reloadData()
         }
