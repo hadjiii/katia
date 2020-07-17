@@ -32,6 +32,7 @@
 		0F9F4FFB24BE508B00165A60 /* StoryMediaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FFA24BE508B00165A60 /* StoryMediaController.swift */; };
 		0F9F4FFD24BE517700165A60 /* StoryMediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FFC24BE517700165A60 /* StoryMediaCell.swift */; };
 		0F9F500024BE5F4000165A60 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FFF24BE5F4000165A60 /* Data.swift */; };
+		0F9F500224BFA40D00165A60 /* StoryMediaPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F500124BFA40C00165A60 /* StoryMediaPreviewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		0F9F4FFA24BE508B00165A60 /* StoryMediaController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryMediaController.swift; sourceTree = "<group>"; };
 		0F9F4FFC24BE517700165A60 /* StoryMediaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryMediaCell.swift; sourceTree = "<group>"; };
 		0F9F4FFF24BE5F4000165A60 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		0F9F500124BFA40C00165A60 /* StoryMediaPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryMediaPreviewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				0F9F4FD424B66CDF00165A60 /* MessageMediaController.swift */,
 				0F9F4FEC24B9205A00165A60 /* ShowStoryController.swift */,
 				0F9F4FFA24BE508B00165A60 /* StoryMediaController.swift */,
+				0F9F500124BFA40C00165A60 /* StoryMediaPreviewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				0F9F4FEF24B9211700165A60 /* ShowStoryCell.swift in Sources */,
 				0F9F4FFB24BE508B00165A60 /* StoryMediaController.swift in Sources */,
 				0F9F4FD324B4F1EF00165A60 /* MessageCell.swift in Sources */,
+				0F9F500224BFA40D00165A60 /* StoryMediaPreviewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
