@@ -18,7 +18,8 @@ class ShowStoryCell: UICollectionViewCell {
     var playerLayer: AVPlayerLayer!
     var story: Story? {
         didSet {
-            guard let url = URL(string: story!.medialink) else {return}
+            guard let mediaLink = story?.medialink else {return}
+            guard let url = URL(string: mediaLink) else {return}
             print("story \(url)")
             
             switch story?.mediaType {
