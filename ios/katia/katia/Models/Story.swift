@@ -9,6 +9,8 @@
 import Foundation
 
 struct Story {
+    var id: Int?
+    var userId: NSNumber
     var username: String
     var mediaType: MediaType
     var medialink: String?
