@@ -145,7 +145,7 @@ class StoryMediaPreviewController: UIViewController {
     
     @objc func send() {
         let mediaType: MediaType = storyMedia?.mediaType == PHAssetMediaType.image ? .image : .video
-        let story = Story(username: "Me", mediaType: mediaType, status: .read)
+        let story = Story(userId: 1, username: "Me", mediaType: mediaType, status: .read)
         let layout = UICollectionViewFlowLayout()
         let storyController = StoryController(collectionViewLayout: layout)
         storyController.story = story
