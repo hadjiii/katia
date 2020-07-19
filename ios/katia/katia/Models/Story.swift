@@ -10,7 +10,7 @@ import Foundation
 
 struct Story {
     var id: Int?
-    var userId: NSNumber
+    var userId: Int
     var username: String
     var mediaType: MediaType
     var medialink: String?
