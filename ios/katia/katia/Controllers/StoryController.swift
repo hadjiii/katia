@@ -16,16 +16,16 @@ private let headerReuseIdentifier = "storyHeaderCell"
 class StoryController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     var story: Story? {
         didSet {
-            guard let story = story  else { return }
-            Data.stories["myStories"]?.append([story])
-            stories = Data.stories
+            guard var story = story  else { return }
+            Data.addStory(&story)
+            stories = Data.getOrderedStories()
             collectionView.reloadData()
         }
     }
     var sectionTitles = [String]()
     let recentSectionTitle = "Recent"
     let readSectionTitle = "Read"
-    var stories = Data.stories
+    var stories: [String: [[Story]]]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,18 +46,29 @@ class StoryController: UICollectionViewController, UICollectionViewDelegateFlowL
         mediaButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30).isActive = true
         mediaButton.widthAnchor.constraint(equalToConstant: 56).isActive = true
         mediaButton.heightAnchor.constraint(equalToConstant: 56).isActive = true
+    }
+    
+    private func setupSectionTitles() {
+        sectionTitles.removeAll(keepingCapacity: false)
         
-        if let recentStories =  stories["recent"] {
+        if let recentStories =  stories?["recent"] {
             if !recentStories.isEmpty {
                 sectionTitles.append(recentSectionTitle)
             }
         }
         
-        if let readStories =  stories["read"] {
+        if let readStories =  stories?["read"] {
             if !readStories.isEmpty {
                 sectionTitles.append(readSectionTitle)
             }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("will appear")
+        stories = Data.getOrderedStories()
+        setupSectionTitles()
+        collectionView.reloadData()
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -72,10 +83,10 @@ class StoryController: UICollectionViewController, UICollectionViewDelegateFlowL
         }
         
         if sectionTitles[section - 1] == recentSectionTitle {
-            return stories["recent"]!.count
+            return stories?["recent"]!.count ?? 0
         }
         
-        return stories["read"]!.count
+        return stories?["read"]!.count ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -86,20 +97,20 @@ class StoryController: UICollectionViewController, UICollectionViewDelegateFlowL
         if section == 0 {
             cell.name.text = "My Stories"
             cell.photo.layer.borderColor = UIColor(red: 101/255, green: 119/255, blue: 134/255, alpha: 1).cgColor
-            if let myStories = stories["myStories"], myStories.isEmpty {
+            if let myStories = stories?["myStories"], myStories.isEmpty {
                 cell.date.text = "Press to add a new story"
             }
         }
         else if section == 1 {
             if sectionTitles[0] == recentSectionTitle {
-                let recentSectionStories = stories["recent"]
+                let recentSectionStories = stories?["recent"]
                 let lastStoriesPerUser = recentSectionStories![item].last
                 cell.name.text = lastStoriesPerUser?.username
                 cell.date.text = lastStoriesPerUser?.date
                 cell.photo.layer.borderColor = UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1).cgColor
             }
             else {
-                let readSectionStories = stories["read"]
+                let readSectionStories = stories?["read"]
                 let lastStoriesPerUser = readSectionStories![item].last
                 cell.name.text = lastStoriesPerUser?.username
                 cell.date.text = lastStoriesPerUser?.date
@@ -107,7 +118,7 @@ class StoryController: UICollectionViewController, UICollectionViewDelegateFlowL
             }
         }
         else {
-            let readSectionStories = stories["read"]
+            let readSectionStories = stories?["read"]
             let lastStoriesPerUser = readSectionStories![item].last
             cell.name.text = lastStoriesPerUser?.username
             cell.date.text = lastStoriesPerUser?.date
@@ -145,7 +156,7 @@ class StoryController: UICollectionViewController, UICollectionViewDelegateFlowL
         let section = indexPath.section
         
         if section == 0 {
-            let currentUserStories = stories["myStories"]
+            let currentUserStories = stories?["myStories"]
             if currentUserStories!.isEmpty {
                 newStory()
                 return
@@ -153,11 +164,11 @@ class StoryController: UICollectionViewController, UICollectionViewDelegateFlowL
             showStoryController.stories = currentUserStories?.flatMap{$0}
         }
         else if section == 1 {
-            let userStories = stories["recent"]?[indexPath.item]
+            let userStories = stories?["recent"]?[indexPath.item]
             showStoryController.stories = userStories
         }
         else if section == 2 {
-            let userStories = stories["read"]?[indexPath.item]
+            let userStories = stories?["read"]?[indexPath.item]
             showStoryController.stories = userStories
         }
         navigationController?.pushViewController(showStoryController, animated: true)
