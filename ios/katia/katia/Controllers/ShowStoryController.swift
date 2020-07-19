@@ -81,6 +81,10 @@ class ShowStoryController: UICollectionViewController, UICollectionViewDelegateF
         return CGSize(width: self.collectionView.frame.width, height: self.collectionView.frame.height)
     }
     
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let storyId = stories![indexPath.item].id else {return}
+        Data.setStoryAsRead(id: storyId)
+    }
     
     func slideToNextStory(currentCell: ShowStoryCell) {
         guard let currentCellItem = collectionView.indexPath(for: currentCell)?.item else {return}
