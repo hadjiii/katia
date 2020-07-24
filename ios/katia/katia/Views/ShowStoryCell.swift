@@ -11,6 +11,9 @@ import AVKit
 import AVFoundation
 
 class ShowStoryCell: UICollectionViewCell {
+    lazy var imageDisplayTimer = Timer.scheduledTimer(withTimeInterval: 30, repeats: false) { (timer) in
+        self.delegate.slideToNextStory(currentCell: self)
+    }
     var delegate: ShowStoryCellDelegate!
     var imageConstraints: [NSLayoutConstraint]!
     var videoConstraints: [NSLayoutConstraint]!
@@ -36,10 +39,8 @@ class ShowStoryCell: UICollectionViewCell {
                                 let image = UIImage(data: imageData)
                                 DispatchQueue.main.async {
                                     self.imageView.image = image
-                                    
-                                    Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (timer) in
-                                        self.delegate.slideToNextStory(currentCell: self)
-                                    }.fire()                                }
+                                    RunLoop.current.add(self.imageDisplayTimer, forMode: RunLoop.Mode.common)
+                                }
                             } else {
                                 print("Couldn't get image: Image is nil")
                             }
@@ -168,5 +169,17 @@ class ShowStoryCell: UICollectionViewCell {
         NotificationCenter.default.removeObserver(self)
         print("video finished")
         delegate.slideToNextStory(currentCell: self)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first
+        let touchPoint = touch!.location(in: self)
+        
+        if touchPoint.x > (frame.width / 2) {
+            delegate.slideToNextStory(currentCell: self)
+        }
+        else {
+            delegate.slideToPreviousStory(currentCell: self)
+        }
     }
 }

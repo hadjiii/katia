@@ -11,6 +11,7 @@ import UIKit
 private let reuseIdentifier = "showStoryCell"
 
 class ShowStoryController: UICollectionViewController, UICollectionViewDelegateFlowLayout, ShowStoryCellDelegate {
+    
     var stories: [Story]? {
         didSet {
             print("stories did set")
@@ -94,10 +95,22 @@ class ShowStoryController: UICollectionViewController, UICollectionViewDelegateF
         if nextItemIndex < storiesCount {
             let nextCellIndexPath = IndexPath(item: nextItemIndex, section: 0)
             collectionView.scrollToItem(at: nextCellIndexPath, at: UICollectionView.ScrollPosition.right, animated: true)
-            pageControl.currentPage = 1
+            pageControl.currentPage = nextItemIndex
         }
         else {
             navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    
+    func slideToPreviousStory(currentCell: ShowStoryCell) {
+        guard let currentCellItem = collectionView.indexPath(for: currentCell)?.item else {return}
+        let previousItemIndex = currentCellItem - 1
+        
+        if previousItemIndex >= 0 {
+            let previousCellIndexPath = IndexPath(item: previousItemIndex, section: 0)
+            collectionView.scrollToItem(at: previousCellIndexPath, at: UICollectionView.ScrollPosition.right, animated: true)
+            pageControl.currentPage = previousItemIndex
         }
     }
     

@@ -10,4 +10,5 @@ import Foundation
 
 protocol ShowStoryCellDelegate {
     func slideToNextStory(currentCell: ShowStoryCell)
+    func slideToPreviousStory(currentCell: ShowStoryCell)
 }
