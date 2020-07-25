@@ -15,7 +15,12 @@ private let messageTextViewMinHeight: CGFloat = 30
 private let messageMediaViewMaxHeight = 130
 
 class MessageController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-    var messages = ["hello", "hi", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.", "Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.", "Sed ut lectus porta augue tempor ornare. Nulla vel nisi sit amet lectus rhoncus aliquet. Donec placerat gravida laoreet."]
+    var userId: Int? {
+        didSet {
+            messages = Data.getMessagesWithUserId(userId!)
+        }
+    }
+    var messages = [Message]()
     
     var messageMedia: PHAsset? {
         didSet {
@@ -200,13 +205,13 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MessageCell
-        let text = messages[indexPath.item]
-        let width = estimateFrameFor(text: text, width: 250, height: 300).width + 16
+        let message = messages[indexPath.item]
+        let width = estimateFrameFor(text: message.text, width: 250, height: 300).width + 16
         
         cell.bubbleWidthAnchor?.constant = width
-        cell.text.text = text
+        cell.text.text = message.text
         
-        if indexPath.item % 2 == 0 {
+        if message.senderId == 1 {
             cell.bubbleRightAnchor?.isActive = true
             cell.bubbleLeftAnchor?.isActive = false
             cell.dateRightAnchor?.isActive = true
@@ -216,12 +221,22 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
             cell.text.backgroundColor = UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1)
             cell.destAvatar.isHidden = true
         }
+        else {
+            cell.bubbleRightAnchor?.isActive = false
+            cell.bubbleLeftAnchor?.isActive = true
+            cell.dateRightAnchor?.isActive = false
+            cell.dateLeftAnchor?.isActive = true
+            cell.date.textAlignment = .left
+            cell.bubble.backgroundColor = UIColor(red: 101/255, green: 119/255, blue: 134/255, alpha: 1)
+            cell.text.backgroundColor = UIColor(red: 101/255, green: 119/255, blue: 134/255, alpha: 1)
+            cell.destAvatar.isHidden = true
+        }
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let text = messages[indexPath.item]
+        let text = messages[indexPath.item].text
         let height = estimateFrameFor(text: text, width: 250, height: 300).height + 50
         return CGSize(width: collectionView.frame.width, height: height)
     }
@@ -265,10 +280,14 @@ extension MessageController {
     }
     
     @objc func sendMessage() {
-        if let message = messageTextView.text {
-            if message.isEmpty {
+        if let messageText = messageTextView.text {
+            if messageText.isEmpty {
                 return
             }
+            
+            guard let userId = userId else { return }
+            
+            let message = Message(id: 11, senderId: 1, recipientId: userId, text: messageText, date: "today")
             messages.append(message)
             let item = messages.count - 1
             collectionView.insertItems(at: [IndexPath(item: item, section: 0)])
