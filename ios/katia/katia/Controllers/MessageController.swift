@@ -229,7 +229,7 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
             cell.date.textAlignment = .left
             cell.bubble.backgroundColor = UIColor(red: 101/255, green: 119/255, blue: 134/255, alpha: 1)
             cell.text.backgroundColor = UIColor(red: 101/255, green: 119/255, blue: 134/255, alpha: 1)
-            cell.destAvatar.isHidden = true
+            cell.destAvatar.isHidden = false
         }
         
         return cell
