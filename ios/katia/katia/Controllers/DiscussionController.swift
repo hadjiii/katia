@@ -40,7 +40,9 @@ class DiscussionController: UICollectionViewController, UICollectionViewDelegate
     }()
     
     @objc func newDiscussion() {
-        print("new discussion")
+        let layout = UICollectionViewFlowLayout()
+        let newDiscussionController = NewDiscussionController(collectionViewLayout: layout)
+        navigationController?.pushViewController(newDiscussionController, animated: false)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
