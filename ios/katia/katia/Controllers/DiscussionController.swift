@@ -20,6 +20,27 @@ class DiscussionController: UICollectionViewController, UICollectionViewDelegate
         
         // Register cell classes
         self.collectionView!.register(DiscussionCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        
+        view.addSubview(newDiscussionButton)
+        newDiscussionButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
+        newDiscussionButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30).isActive = true
+        newDiscussionButton.widthAnchor.constraint(equalToConstant: 56).isActive = true
+        newDiscussionButton.heightAnchor.constraint(equalToConstant: 56).isActive = true
+    }
+    
+    let newDiscussionButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "selected/plus.bubble")?.withTintColor(.white), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1)
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 28
+        button.addTarget(self, action: #selector(newDiscussion), for: .touchDown)
+        return button
+    }()
+    
+    @objc func newDiscussion() {
+        print("new discussion")
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
