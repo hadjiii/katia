@@ -36,6 +36,7 @@
 		0F9F500224BFA40D00165A60 /* StoryMediaPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F500124BFA40C00165A60 /* StoryMediaPreviewController.swift */; };
 		0FC8CB4924CF8B0700F86767 /* NewDiscussionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC8CB4824CF8B0700F86767 /* NewDiscussionController.swift */; };
 		0FC8CB4B24CF96D600F86767 /* NewDiscussionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC8CB4A24CF96D600F86767 /* NewDiscussionCell.swift */; };
+		0FC8CB4D24CF9AAA00F86767 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC8CB4C24CF9AAA00F86767 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		0F9F500124BFA40C00165A60 /* StoryMediaPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryMediaPreviewController.swift; sourceTree = "<group>"; };
 		0FC8CB4824CF8B0700F86767 /* NewDiscussionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDiscussionController.swift; sourceTree = "<group>"; };
 		0FC8CB4A24CF96D600F86767 /* NewDiscussionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDiscussionCell.swift; sourceTree = "<group>"; };
+		0FC8CB4C24CF9AAA00F86767 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 			children = (
 				0F9F4FF324BBB6C000165A60 /* Story.swift */,
 				0F2305C024CB27D600F9D7F2 /* Message.swift */,
+				0FC8CB4C24CF9AAA00F86767 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				0F9F4FCB24B4DB1A00165A60 /* DiscussionCell.swift in Sources */,
 				0F9F4FAE24B4947D00165A60 /* AppDelegate.swift in Sources */,
 				0F9F4FFD24BE517700165A60 /* StoryMediaCell.swift in Sources */,
+				0FC8CB4D24CF9AAA00F86767 /* User.swift in Sources */,
 				0F9F4FD124B4F19200165A60 /* MessageController.swift in Sources */,
 				0FC8CB4B24CF96D600F86767 /* NewDiscussionCell.swift in Sources */,
 				0F9F4FC724B4D18D00165A60 /* CustomTabBarController.swift in Sources */,
