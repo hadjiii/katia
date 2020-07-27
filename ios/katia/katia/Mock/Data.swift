@@ -121,4 +121,29 @@ class Data: NSObject {
         
         return groupedDiscussion.map({$0.value.last!}) 
     }
+    
+    static var users = [
+        User(id: 1, name: "Me"),
+        User(id: 2, name: "User2"),
+        User(id: 3, name: "User3"),
+        User(id: 4, name: "User4"),
+    ]
+    
+    static func getUsers() -> [User] {
+        return users
+    }
+    
+    static func addUser(_ user: inout User) {
+        let id = users.capacity + 1
+        user.id = id
+        users.append(user)
+    }
+    
+    static func getUser(id: Int) -> User? {
+        return users.filter({$0.id == id}).first
+    }
+    
+    static func getUser(name: String) -> [User]{
+        return users.filter({$0.name == name})
+    }
 }
