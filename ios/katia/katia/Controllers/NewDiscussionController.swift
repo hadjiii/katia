@@ -10,6 +10,8 @@ import UIKit
 
 private let reuseIdentifier = "newDiscussionCell"
 class NewDiscussionController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+    var users = Data.getUsers()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,7 +41,10 @@ class NewDiscussionController: UICollectionViewController, UICollectionViewDeleg
     }()
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let user = users[indexPath.item]
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! NewDiscussionCell
+        cell.name.text = user.name
         return cell
     }
     
@@ -48,12 +53,15 @@ class NewDiscussionController: UICollectionViewController, UICollectionViewDeleg
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return users.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let user = users[indexPath.item]
+        
         let layout = UICollectionViewFlowLayout()
         let messageController = MessageController(collectionViewLayout: layout)
+        messageController.userId = user.id
         navigationController?.pushViewController(messageController, animated: false)
     }
 }
