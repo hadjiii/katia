@@ -109,6 +109,9 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
         let tabBarFrame = tabBarController?.tabBar.frame
         tabBarShadowView.frame = CGRect(x: 0, y: -1, width: (tabBarFrame?.size.width)!, height: 2)
         tabBarController?.tabBar.addSubview(tabBarShadowView)
+        
+        let indexPath = IndexPath(item: messages.count - 1, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .bottom, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
