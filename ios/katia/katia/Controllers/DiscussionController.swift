@@ -17,6 +17,8 @@ class DiscussionController: UICollectionViewController, UICollectionViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "Discussions"
+        
         collectionView.backgroundColor = UIColor(red: 20/255, green: 29/255, blue: 38/255, alpha: 1)
         
         // Register cell classes
