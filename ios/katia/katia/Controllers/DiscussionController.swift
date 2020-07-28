@@ -11,6 +11,7 @@ import UIKit
 private let reuseIdentifier = "discussionCell"
 
 class DiscussionController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+    var currentUser = Data.getCurrentUser()
     var discussions = Data.getDiscussions()
     
     override func viewDidLoad() {
@@ -52,6 +53,8 @@ class DiscussionController: UICollectionViewController, UICollectionViewDelegate
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let discussion = self.discussions[indexPath.item]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! DiscussionCell
+        
+        cell.name.text = discussion.senderId == currentUser.id ? Data.getUser(id: discussion.recipientId)?.name : Data.getUser(id: discussion.senderId)?.name
         cell.message.text = discussion.text
         cell.date.text = discussion.date
 
@@ -63,8 +66,17 @@ class DiscussionController: UICollectionViewController, UICollectionViewDelegate
         let layout = UICollectionViewFlowLayout()
         let messageController = MessageController(collectionViewLayout: layout)
         navigationController?.pushViewController(messageController, animated: true)
-        messageController.userName = "Username"
-        messageController.userId = discussion.senderId == 1 ? discussion.recipientId : discussion.senderId
+        
+        if discussion.senderId == currentUser.id {
+            messageController.userId = discussion.recipientId
+            let name = Data.getUser(id: discussion.recipientId)?.name
+            messageController.userName = name
+        }
+        else {
+            messageController.userId = discussion.senderId
+            let name = Data.getUser(id: discussion.senderId)?.name
+            messageController.userName = name
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
