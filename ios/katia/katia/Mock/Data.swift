@@ -129,6 +129,10 @@ class Data: NSObject {
         User(id: 4, name: "User4"),
     ]
     
+    static func getCurrentUser() -> User {
+        return users.first!
+    }
+    
     static func getUsers() -> [User] {
         return users
     }
