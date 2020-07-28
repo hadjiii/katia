@@ -288,7 +288,8 @@ extension MessageController {
             guard let userId = userId else { return }
             
             let message = Message(id: 11, senderId: 1, recipientId: userId, text: messageText, date: "today")
-            messages.append(message)
+            Data.addMessage(message)
+            messages = Data.getMessagesWithUserId(userId)
             let item = messages.count - 1
             collectionView.insertItems(at: [IndexPath(item: item, section: 0)])
             collectionView.scrollToItem(at: IndexPath(item: item, section: 0), at: .bottom, animated: true)
