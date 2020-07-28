@@ -12,7 +12,7 @@ private let reuseIdentifier = "discussionCell"
 
 class DiscussionController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     var currentUser = Data.getCurrentUser()
-    var discussions = Data.getDiscussions()
+    var discussions = [Message]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +27,13 @@ class DiscussionController: UICollectionViewController, UICollectionViewDelegate
         newDiscussionButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30).isActive = true
         newDiscussionButton.widthAnchor.constraint(equalToConstant: 56).isActive = true
         newDiscussionButton.heightAnchor.constraint(equalToConstant: 56).isActive = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        discussions = Data.getDiscussions()
+        collectionView.reloadData()
     }
     
     let newDiscussionButton: UIButton = {
