@@ -9,7 +9,7 @@
 import UIKit
 
 private let reuseIdentifier = "newDiscussionCell"
-class NewDiscussionController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class NewDiscussionController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
     var users = Data.getUsers()
     
     override func viewDidLoad() {
@@ -24,6 +24,8 @@ class NewDiscussionController: UICollectionViewController, UICollectionViewDeleg
             flowLayout.scrollDirection = .vertical
             flowLayout.minimumLineSpacing = 0
         }
+        
+        searchBar.delegate = self
         
         view.addSubview(searchBar)
         searchBar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
@@ -63,5 +65,15 @@ class NewDiscussionController: UICollectionViewController, UICollectionViewDeleg
         let messageController = MessageController(collectionViewLayout: layout)
         messageController.userId = user.id
         navigationController?.pushViewController(messageController, animated: false)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            self.users = Data.getUsers()
+        }
+        else {
+            self.users = Data.getUsers(keyword: searchText)
+        }
+        self.collectionView.reloadData()
     }
 }
