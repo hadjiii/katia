@@ -17,7 +17,7 @@ class NewDiscussionController: UICollectionViewController, UICollectionViewDeleg
         
         edgesForExtendedLayout = []
         collectionView.register(NewDiscussionCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        collectionView.backgroundColor = UIColor(red: 36/255, green: 52/255, blue: 71/255, alpha: 1)
+        collectionView.backgroundColor = UIColor(red: 20/255, green: 29/255, blue: 38/255, alpha: 1)
         collectionView.contentInset = UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
         
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
@@ -46,6 +46,7 @@ class NewDiscussionController: UICollectionViewController, UICollectionViewDeleg
         let user = users[indexPath.item]
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! NewDiscussionCell
+        cell.backgroundColor = UIColor(red: 36/255, green: 52/255, blue: 71/255, alpha: 1)
         cell.name.text = user.name
         return cell
     }
