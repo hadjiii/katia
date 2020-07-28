@@ -64,6 +64,7 @@ class NewDiscussionController: UICollectionViewController, UICollectionViewDeleg
         let layout = UICollectionViewFlowLayout()
         let messageController = MessageController(collectionViewLayout: layout)
         messageController.userId = user.id
+        messageController.userName = user.name
         navigationController?.pushViewController(messageController, animated: false)
     }
     
