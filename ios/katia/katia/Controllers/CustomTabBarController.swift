@@ -21,10 +21,6 @@ class CustomTabBarController: UITabBarController {
         separator.topAnchor.constraint(equalTo: tabBar.topAnchor).isActive = true
         separator.heightAnchor.constraint(equalToConstant: 0.3).isActive = true
         
-        let userControllerLayout = UICollectionViewFlowLayout()
-        let userController = UserController(collectionViewLayout: userControllerLayout)
-        let userNavController = createNavControllerWithImage(title: "Users", name: "users", controller: userController)
-        
         let discussionControllerLayout = UICollectionViewFlowLayout()
         let discussionController = DiscussionController(collectionViewLayout: discussionControllerLayout)
         let discussionNavController = createNavControllerWithImage(title: "Discussions", name: "bubble", controller: discussionController)
@@ -33,7 +29,7 @@ class CustomTabBarController: UITabBarController {
         let storyController = StoryController(collectionViewLayout: storyControllerLayout)
         let storyNavController = createNavControllerWithImage(title: "Stories", name: "film", controller: storyController)
         
-        viewControllers = [userNavController, discussionNavController, storyNavController]
+        viewControllers = [discussionNavController, storyNavController]
     }
     
     private func createNavControllerWithImage(title: String, name:String, controller: UIViewController) -> UINavigationController {
