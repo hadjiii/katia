@@ -17,7 +17,7 @@ class DiscussionController: UICollectionViewController, UICollectionViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.backgroundColor = UIColor(red: 36/255, green: 52/255, blue: 71/255, alpha: 1)
+        collectionView.backgroundColor = UIColor(red: 20/255, green: 29/255, blue: 38/255, alpha: 1)
         
         // Register cell classes
         self.collectionView!.register(DiscussionCell.self, forCellWithReuseIdentifier: reuseIdentifier)
@@ -61,6 +61,7 @@ class DiscussionController: UICollectionViewController, UICollectionViewDelegate
         let discussion = self.discussions[indexPath.item]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! DiscussionCell
         
+        cell.backgroundColor = UIColor(red: 36/255, green: 52/255, blue: 71/255, alpha: 1)
         cell.name.text = discussion.senderId == currentUser.id ? Data.getUser(id: discussion.recipientId)?.name : Data.getUser(id: discussion.senderId)?.name
         cell.message.text = discussion.text
         cell.date.text = discussion.date
