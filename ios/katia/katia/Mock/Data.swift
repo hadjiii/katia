@@ -146,4 +146,8 @@ class Data: NSObject {
     static func getUser(name: String) -> [User]{
         return users.filter({$0.name == name})
     }
+    
+    static func getUsers(keyword: String) -> [User] {
+        return users.filter({$0.name.lowercased().contains(keyword.lowercased())})
+    }
 }
