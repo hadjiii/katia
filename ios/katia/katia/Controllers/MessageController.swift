@@ -284,13 +284,15 @@ extension MessageController {
     
     @objc func sendMessage() {
         if let messageText = messageTextView.text {
-            if messageText.isEmpty {
+            let messageTextTrimmed = messageText.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            if messageTextTrimmed.isEmpty {
                 return
             }
             
             guard let userId = userId else { return }
             
-            let message = Message(id: 11, senderId: 1, recipientId: userId, text: messageText, date: "today")
+            let message = Message(id: 11, senderId: 1, recipientId: userId, text: messageTextTrimmed, date: "today")
             Data.addMessage(message)
             messages = Data.getMessagesWithUserId(userId)
             let item = messages.count - 1
