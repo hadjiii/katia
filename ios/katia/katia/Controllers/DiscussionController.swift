@@ -22,6 +22,11 @@ class DiscussionController: UICollectionViewController, UICollectionViewDelegate
         // Register cell classes
         self.collectionView!.register(DiscussionCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
+        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.scrollDirection = .vertical
+            flowLayout.minimumLineSpacing = 0
+        }
+        
         view.addSubview(newDiscussionButton)
         newDiscussionButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
         newDiscussionButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30).isActive = true
