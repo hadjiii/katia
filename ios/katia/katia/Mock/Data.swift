@@ -143,7 +143,7 @@ class Data: NSObject {
         return users.filter({$0.id == id}).first
     }
     
-    static func getUser(name: String) -> [User]{
+    static func getUsers(name: String) -> [User]{
         return users.filter({$0.name == name})
     }
     
