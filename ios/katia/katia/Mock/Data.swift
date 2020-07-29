@@ -96,8 +96,8 @@ class Data: NSObject {
     }
     
     static var messages = [
-        Message(id: 1, senderId: 1, recipientId: 2, text: "Hello", date: "Saturday, 19 AM"),
-        Message(id: 2, senderId: 2, recipientId: 1, text: "Hi", date: "Saturday, 19 AM"),
+        Message(id: 1, senderId: 1, recipientId: 2, text: "Hello", mediaType: .image, mediaLink: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/250px-Image_created_with_a_mobile_phone.png", date: "Saturday, 19 AM"),
+        Message(id: 2, senderId: 2, recipientId: 1, text: "Hi", mediaType: .video, mediaLink: "https://katiapp.s3.amazonaws.com/test.mp4", date: "Saturday, 19 AM"),
         Message(id: 3, senderId: 1, recipientId: 2, text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", date: "Saturday, 19 AM"),
         Message(id: 4, senderId: 2, recipientId: 1, text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.", date: "Saturday, 19 AM"),
         Message(id: 5, senderId: 1, recipientId: 2, text: "Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.", date: "Saturday, 19 AM"),
