@@ -7,8 +7,14 @@
 //
 
 import UIKit
+import Photos
 
 class MessageCell: UICollectionViewCell {
+    var message: Message? {
+        didSet {
+            self.downloadMedia()
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,6 +25,19 @@ class MessageCell: UICollectionViewCell {
         destAvatar.heightAnchor.constraint(equalToConstant: 40).isActive = true
         destAvatar.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -30).isActive = true
         
+        
+        addSubview(mediaView)
+        mediaViewLeftConstraint = mediaView.leftAnchor.constraint(equalTo: destAvatar.rightAnchor, constant: 10)
+        mediaViewLeftConstraint?.isActive = true
+        mediaViewRightConstraint = mediaView.rightAnchor.constraint(equalTo: rightAnchor, constant: -10)
+        mediaViewRightConstraint?.isActive = false
+        mediaView.widthAnchor.constraint(lessThanOrEqualToConstant: 200).isActive = true
+        mediaView.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
+        mediaViewHeightShowConstraint = mediaView.heightAnchor.constraint(lessThanOrEqualToConstant: 200)
+        mediaViewHeightShowConstraint?.isActive = true
+        mediaViewHeightHideConstraint = mediaView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0)
+        mediaViewHeightHideConstraint?.isActive = false
+        
         addSubview(bubble)
         bubbleLeftAnchor =  bubble.leftAnchor.constraint(equalTo: destAvatar.rightAnchor, constant: 10)
         bubbleLeftAnchor?.isActive = true
@@ -26,7 +45,8 @@ class MessageCell: UICollectionViewCell {
         bubbleRightAnchor?.isActive = false
         bubbleWidthAnchor = bubble.widthAnchor.constraint(equalToConstant: 200)
         bubbleWidthAnchor?.isActive = true
-        bubble.heightAnchor.constraint(equalTo: heightAnchor, constant: -30).isActive = true
+        bubble.topAnchor.constraint(equalTo: mediaView.bottomAnchor, constant: 0).isActive = true
+        bubble.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -30).isActive = true
         
         bubble.addSubview(text)
         text.leftAnchor.constraint(equalTo: bubble.leftAnchor).isActive = true
@@ -54,6 +74,10 @@ class MessageCell: UICollectionViewCell {
     var bubbleRightAnchor: NSLayoutConstraint?
     var dateLeftAnchor: NSLayoutConstraint?
     var dateRightAnchor: NSLayoutConstraint?
+    var mediaViewLeftConstraint: NSLayoutConstraint?
+    var mediaViewRightConstraint: NSLayoutConstraint?
+    var mediaViewHeightShowConstraint: NSLayoutConstraint?
+    var mediaViewHeightHideConstraint: NSLayoutConstraint?
     
     let destAvatar: UIImageView = {
         let avatar = UIImageView(image: UIImage(named: "normal/user"))
@@ -91,4 +115,59 @@ class MessageCell: UICollectionViewCell {
         dt.translatesAutoresizingMaskIntoConstraints = false
         return dt
     }()
+    
+    let mediaView: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
+    
+    private func downloadMedia() {
+        if message?.mediaType == MediaType.image {
+            guard let mediaLink = message?.mediaLink else {return}
+            guard let url = URL(string: mediaLink) else {return}
+            
+            URLSession(configuration: .default).dataTask(with: url) { (data, response, error) in
+                if let error = error {
+                    print("Error downloading cat picture: \(error)")
+                    return
+                }
+                if let res = response as? HTTPURLResponse {
+                    print("Downloaded cat picture with response code \(res.statusCode)")
+                    if let imageData = data {
+                        let image = UIImage(data: imageData)
+                        DispatchQueue.main.async {
+                            self.mediaView.image = image
+                        }
+                    } else {
+                        print("Couldn't get image: Image is nil")
+                    }
+                } else {
+                    print("Couldn't get response code for some reason")
+                }
+            }.resume()
+        }
+        else if message?.mediaType == MediaType.video {
+            guard let mediaLink = message?.mediaLink else {return}
+            guard let url = URL(string: mediaLink) else {return}
+            
+            let asset = AVAsset(url: url)
+            let assetImageGenerator = AVAssetImageGenerator(asset: asset)
+            assetImageGenerator.appliesPreferredTrackTransform = true
+            
+            let time = CMTimeMakeWithSeconds(1.0, preferredTimescale: 600)
+            
+            do {
+                let image = try assetImageGenerator.copyCGImage(at: time, actualTime: nil)
+                let thumbnail = UIImage(cgImage: image)
+                DispatchQueue.main.async {
+                    self.mediaView.image = thumbnail
+                }
+            }
+            catch {
+                print(error)
+            }
+        }
+    }
 }

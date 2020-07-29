@@ -45,6 +45,11 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
         collectionView.register(MessageCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.showsVerticalScrollIndicator = false
         
+        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.scrollDirection = .vertical
+            flowLayout.minimumLineSpacing = 0
+        }
+        
         view.addSubview(controlsContainer)
         controlsContainer.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         controlsContainer.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
@@ -209,12 +214,24 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MessageCell
         let message = messages[indexPath.item]
+        cell.message = message
         let width = estimateFrameFor(text: message.text, width: 250, height: 300).width + 16
         
         cell.bubbleWidthAnchor?.constant = width
         cell.text.text = message.text
         
+        if message.mediaType == nil {
+            cell.mediaViewHeightHideConstraint?.isActive = true
+            cell.mediaViewHeightShowConstraint?.isActive = false
+        }
+        else {
+            cell.mediaViewHeightHideConstraint?.isActive = false
+            cell.mediaViewHeightShowConstraint?.isActive = true
+        }
+        
         if message.senderId == 1 {
+            cell.mediaViewRightConstraint?.isActive = true
+            cell.mediaViewLeftConstraint?.isActive = false
             cell.bubbleRightAnchor?.isActive = true
             cell.bubbleLeftAnchor?.isActive = false
             cell.dateRightAnchor?.isActive = true
@@ -225,6 +242,8 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
             cell.destAvatar.isHidden = true
         }
         else {
+            cell.mediaViewRightConstraint?.isActive = false
+            cell.mediaViewLeftConstraint?.isActive = true
             cell.bubbleRightAnchor?.isActive = false
             cell.bubbleLeftAnchor?.isActive = true
             cell.dateRightAnchor?.isActive = false
@@ -239,8 +258,11 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let text = messages[indexPath.item].text
-        let height = estimateFrameFor(text: text, width: 250, height: 300).height + 50
+        let message = messages[indexPath.item]
+        
+        let mediaViewheight: CGFloat = message.mediaType == nil ? 0.0 : 200.0
+        
+        let height = estimateFrameFor(text: message.text, width: 250, height: 300).height + 50 + mediaViewheight
         return CGSize(width: collectionView.frame.width, height: height)
     }
 }
@@ -269,7 +291,6 @@ extension MessageController {
     }
     
     func removeKeyboardObservers() {
-        NotificationCenter.default.removeObserver(self)
         NotificationCenter.default.removeObserver(self)
     }
     
