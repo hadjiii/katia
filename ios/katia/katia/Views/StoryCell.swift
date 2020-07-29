@@ -1,5 +1,5 @@
 //
-//  DiscussionCell.swift
+//  StoryCell.swift
 //  katia
 //
 //  Created by Hadji on 07/07/2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DiscussionCell: UICollectionViewCell {
+class StoryCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -25,16 +25,10 @@ class DiscussionCell: UICollectionViewCell {
         name.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
         
         addSubview(date)
+        date.leftAnchor.constraint(equalTo: photo.rightAnchor, constant: 10).isActive = true
         date.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true
+        date.topAnchor.constraint(equalTo: name.bottomAnchor).isActive = true
         date.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        date.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        date.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
-        
-        addSubview(message)
-        message.leftAnchor.constraint(equalTo: photo.rightAnchor, constant: 10).isActive = true
-        message.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true
-        message.topAnchor.constraint(equalTo: name.bottomAnchor).isActive = true
-        message.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
         addSubview(separator)
         separator.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
@@ -56,26 +50,20 @@ class DiscussionCell: UICollectionViewCell {
         return label
     }()
     
-    let photo: UIImageView = {
-        let avatar = UIImageView(image: UIImage(named: "normal/user"))
+    let photo: UIView = {
+        let avatar = UIView()
         avatar.translatesAutoresizingMaskIntoConstraints = false
         avatar.layer.cornerRadius = 25
         avatar.layer.masksToBounds = true
         avatar.backgroundColor = .darkGray
+        avatar.layer.borderWidth = 2
+        avatar.layer.borderColor = UIColor(red: 101/255, green: 119/255, blue: 134/255, alpha: 1).cgColor
         return avatar
-    }()
-    
-    let message: UILabel = {
-        let label = UILabel()
-        label.text = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
-        label.textColor = UIColor(red: 101/255, green: 119/255, blue: 134/255, alpha: 1)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
     }()
     
     let date: UILabel = {
         let label = UILabel()
-        label.text = "22h"
+        label.text = "today at 16 AM"
         label.textColor = UIColor(red: 101/255, green: 119/255, blue: 134/255, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

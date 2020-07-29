@@ -1,14 +1,14 @@
 //
-//  UserCell.swift
+//  NewDiscussionCell.swift
 //  katia
 //
-//  Created by Hadji on 07/07/2020.
+//  Created by Hadji on 28/07/2020.
 //  Copyright © 2020 Hadji. All rights reserved.
 //
 
 import UIKit
 
-class UserCell: UICollectionViewCell {
+class NewDiscussionCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -40,11 +40,12 @@ class UserCell: UICollectionViewCell {
         name.text = "Username"
         name.textColor = .white
         name.translatesAutoresizingMaskIntoConstraints = false
+        name.font = UIFont.boldSystemFont(ofSize: 16)
         return name
     }()
     
-    let photo: UIView = {
-        let avatar = UIView()
+    let photo: UIImageView = {
+        let avatar = UIImageView(image: UIImage(named: "normal/user"))
         avatar.translatesAutoresizingMaskIntoConstraints = false
         avatar.layer.cornerRadius = 25
         avatar.layer.masksToBounds = true
