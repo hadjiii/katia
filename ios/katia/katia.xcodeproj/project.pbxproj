@@ -33,6 +33,9 @@
 		0F9F500024BE5F4000165A60 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FFF24BE5F4000165A60 /* Data.swift */; };
 		0F9F500224BFA40D00165A60 /* StoryMediaPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F500124BFA40C00165A60 /* StoryMediaPreviewController.swift */; };
 		0FA4389124D1D53A00B6D744 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA4389024D1D53A00B6D744 /* LoginController.swift */; };
+		0FB6F30124D9F4090025CEA3 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB6F30024D9F4090025CEA3 /* MenuController.swift */; };
+		0FB6F30324DA23470025CEA3 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB6F30224DA23470025CEA3 /* ContainerViewController.swift */; };
+		0FB6F30524DA253B0025CEA3 /* ContainerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB6F30424DA253B0025CEA3 /* ContainerDelegate.swift */; };
 		0FC8CB4924CF8B0700F86767 /* NewDiscussionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC8CB4824CF8B0700F86767 /* NewDiscussionController.swift */; };
 		0FC8CB4B24CF96D600F86767 /* NewDiscussionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC8CB4A24CF96D600F86767 /* NewDiscussionCell.swift */; };
 		0FC8CB4D24CF9AAA00F86767 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC8CB4C24CF9AAA00F86767 /* User.swift */; };
@@ -67,6 +70,9 @@
 		0F9F4FFF24BE5F4000165A60 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		0F9F500124BFA40C00165A60 /* StoryMediaPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryMediaPreviewController.swift; sourceTree = "<group>"; };
 		0FA4389024D1D53A00B6D744 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		0FB6F30024D9F4090025CEA3 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		0FB6F30224DA23470025CEA3 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		0FB6F30424DA253B0025CEA3 /* ContainerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerDelegate.swift; sourceTree = "<group>"; };
 		0FC8CB4824CF8B0700F86767 /* NewDiscussionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDiscussionController.swift; sourceTree = "<group>"; };
 		0FC8CB4A24CF96D600F86767 /* NewDiscussionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDiscussionCell.swift; sourceTree = "<group>"; };
 		0FC8CB4C24CF9AAA00F86767 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -132,6 +138,8 @@
 				0F9F500124BFA40C00165A60 /* StoryMediaPreviewController.swift */,
 				0FC8CB4824CF8B0700F86767 /* NewDiscussionController.swift */,
 				0FA4389024D1D53A00B6D744 /* LoginController.swift */,
+				0FB6F30024D9F4090025CEA3 /* MenuController.swift */,
+				0FB6F30224DA23470025CEA3 /* ContainerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -180,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				0F9F4FF624BCFD3E00165A60 /* ShowStoryCellDelegate.swift */,
+				0FB6F30424DA253B0025CEA3 /* ContainerDelegate.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -264,6 +273,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F9F4FCD24B4E83800165A60 /* StoryController.swift in Sources */,
+				0FB6F30124D9F4090025CEA3 /* MenuController.swift in Sources */,
+				0FB6F30324DA23470025CEA3 /* ContainerViewController.swift in Sources */,
 				0F9F4FCB24B4DB1A00165A60 /* DiscussionCell.swift in Sources */,
 				0F9F4FAE24B4947D00165A60 /* AppDelegate.swift in Sources */,
 				0FA4389124D1D53A00B6D744 /* LoginController.swift in Sources */,
@@ -281,6 +292,7 @@
 				0F9F4FED24B9205A00165A60 /* ShowStoryController.swift in Sources */,
 				0F9F4FD724B66FA700165A60 /* MessageMediaCell.swift in Sources */,
 				0F9F500024BE5F4000165A60 /* Data.swift in Sources */,
+				0FB6F30524DA253B0025CEA3 /* ContainerDelegate.swift in Sources */,
 				0FC8CB4924CF8B0700F86767 /* NewDiscussionController.swift in Sources */,
 				0F9F4FEB24B9181A00165A60 /* StorySectionHeaderView.swift in Sources */,
 				0F9F4FB024B4947D00165A60 /* SceneDelegate.swift in Sources */,
