@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F04995024DDB89A00DBECDE /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F04994F24DDB89A00DBECDE /* MenuCell.swift */; };
 		0F2305C124CB27D600F9D7F2 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2305C024CB27D600F9D7F2 /* Message.swift */; };
 		0F9F4FAE24B4947D00165A60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FAD24B4947D00165A60 /* AppDelegate.swift */; };
 		0F9F4FB024B4947D00165A60 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FAF24B4947D00165A60 /* SceneDelegate.swift */; };
@@ -36,12 +37,14 @@
 		0FB6F30124D9F4090025CEA3 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB6F30024D9F4090025CEA3 /* MenuController.swift */; };
 		0FB6F30324DA23470025CEA3 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB6F30224DA23470025CEA3 /* ContainerViewController.swift */; };
 		0FB6F30524DA253B0025CEA3 /* ContainerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB6F30424DA253B0025CEA3 /* ContainerDelegate.swift */; };
+		0FB6F30724DB5FE10025CEA3 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB6F30624DB5FE10025CEA3 /* MenuItem.swift */; };
 		0FC8CB4924CF8B0700F86767 /* NewDiscussionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC8CB4824CF8B0700F86767 /* NewDiscussionController.swift */; };
 		0FC8CB4B24CF96D600F86767 /* NewDiscussionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC8CB4A24CF96D600F86767 /* NewDiscussionCell.swift */; };
 		0FC8CB4D24CF9AAA00F86767 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC8CB4C24CF9AAA00F86767 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F04994F24DDB89A00DBECDE /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		0F2305C024CB27D600F9D7F2 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		0F9F4FAA24B4947D00165A60 /* katia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = katia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F9F4FAD24B4947D00165A60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +76,7 @@
 		0FB6F30024D9F4090025CEA3 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		0FB6F30224DA23470025CEA3 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		0FB6F30424DA253B0025CEA3 /* ContainerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerDelegate.swift; sourceTree = "<group>"; };
+		0FB6F30624DB5FE10025CEA3 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		0FC8CB4824CF8B0700F86767 /* NewDiscussionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDiscussionController.swift; sourceTree = "<group>"; };
 		0FC8CB4A24CF96D600F86767 /* NewDiscussionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDiscussionCell.swift; sourceTree = "<group>"; };
 		0FC8CB4C24CF9AAA00F86767 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -155,6 +159,7 @@
 				0F9F4FEE24B9211700165A60 /* ShowStoryCell.swift */,
 				0F9F4FFC24BE517700165A60 /* StoryMediaCell.swift */,
 				0FC8CB4A24CF96D600F86767 /* NewDiscussionCell.swift */,
+				0F04994F24DDB89A00DBECDE /* MenuCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -180,6 +185,7 @@
 				0F9F4FF324BBB6C000165A60 /* Story.swift */,
 				0F2305C024CB27D600F9D7F2 /* Message.swift */,
 				0FC8CB4C24CF9AAA00F86767 /* User.swift */,
+				0FB6F30624DB5FE10025CEA3 /* MenuItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -274,6 +280,7 @@
 			files = (
 				0F9F4FCD24B4E83800165A60 /* StoryController.swift in Sources */,
 				0FB6F30124D9F4090025CEA3 /* MenuController.swift in Sources */,
+				0F04995024DDB89A00DBECDE /* MenuCell.swift in Sources */,
 				0FB6F30324DA23470025CEA3 /* ContainerViewController.swift in Sources */,
 				0F9F4FCB24B4DB1A00165A60 /* DiscussionCell.swift in Sources */,
 				0F9F4FAE24B4947D00165A60 /* AppDelegate.swift in Sources */,
@@ -281,6 +288,7 @@
 				0F9F4FFD24BE517700165A60 /* StoryMediaCell.swift in Sources */,
 				0FC8CB4D24CF9AAA00F86767 /* User.swift in Sources */,
 				0F9F4FD124B4F19200165A60 /* MessageController.swift in Sources */,
+				0FB6F30724DB5FE10025CEA3 /* MenuItem.swift in Sources */,
 				0FC8CB4B24CF96D600F86767 /* NewDiscussionCell.swift in Sources */,
 				0F9F4FC724B4D18D00165A60 /* CustomTabBarController.swift in Sources */,
 				0F9F4FCF24B4EB3B00165A60 /* StoryCell.swift in Sources */,
