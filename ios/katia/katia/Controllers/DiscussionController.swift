@@ -18,6 +18,8 @@ class DiscussionController: UICollectionViewController, UICollectionViewDelegate
         super.viewDidLoad()
         
         navigationItem.title = "Discussions"
+        let menuImage = UIImage.init(systemName: "flame.fill", withConfiguration: nil)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: menuImage, style: .plain, target: self, action: #selector(toggleSlideMenu))
         
         collectionView.backgroundColor = UIColor(red: 20/255, green: 29/255, blue: 38/255, alpha: 1)
         
@@ -96,5 +98,10 @@ class DiscussionController: UICollectionViewController, UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: 70)
+    }
+    
+    @objc func toggleSlideMenu() {
+        let customTabBarController = tabBarController as! CustomTabBarController
+        customTabBarController.toggleSlideMenu()
     }
 }

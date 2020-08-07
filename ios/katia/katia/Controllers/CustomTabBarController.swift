@@ -9,7 +9,8 @@
 import UIKit
 
 class CustomTabBarController: UITabBarController {
-
+    var menuDelegate: ContainerViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,4 +46,8 @@ class CustomTabBarController: UITabBarController {
         sep.backgroundColor = UIColor(red: 101/255, green: 119/255, blue: 134/255, alpha: 1)
         return sep
     }()
+    
+    func toggleSlideMenu() {
+        menuDelegate?.toggleSlideMenu(menuItem: nil)
+    }
 }
