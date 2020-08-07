@@ -48,6 +48,6 @@ class CustomTabBarController: UITabBarController {
     }()
     
     func toggleSlideMenu() {
-        menuDelegate?.toggleSlideMenu()
+        menuDelegate?.toggleSlideMenu(menuItem: nil)
     }
 }

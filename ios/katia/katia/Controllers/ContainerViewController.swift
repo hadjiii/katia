@@ -29,6 +29,7 @@ class ContainerViewController: UIViewController {
         if menuController == nil {
             let layout = UICollectionViewFlowLayout()
             menuController = MenuController(collectionViewLayout: layout)
+            menuController.menuDelegate = self
             view.insertSubview(menuController.view, at: 0)
             addChild(menuController)
             menuController.didMove(toParent: self)
@@ -37,19 +38,32 @@ class ContainerViewController: UIViewController {
 }
 
 extension ContainerViewController: ContainerDelegate {
-    @objc func toggleSlideMenu() {
+    func toggleSlideMenu(menuItem: MenuItem?) {
+        menuIsExpanded.toggle()
+        
         if menuIsExpanded {
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
-                self.currentViewController?.view.frame.origin.x = 0
-            }, completion: nil)
-        }
-        else {
             setupMenuController()
+            
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
                 self.currentViewController?.view.frame.origin.x = (self.currentViewController?.view.frame.width)! - 80
             }, completion: nil)
         }
-        
-        menuIsExpanded.toggle()
+        else {
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+                self.currentViewController?.view.frame.origin.x = 0
+            }, completion: { complete in
+                switch menuItem {
+                case .Profile:
+                    print("Proifle...")
+                case .Settings:
+                    print("Settings...")
+                case .Logout:
+                    let loginController = LoginController()
+                    self.present(loginController, animated: true, completion: nil)
+                case .none:
+                    print("none")
+                }
+            })
+        }
     }
 }

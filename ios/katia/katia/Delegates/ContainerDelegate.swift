@@ -9,5 +9,5 @@
 import Foundation
 
 protocol ContainerDelegate {
-    func toggleSlideMenu()
+    func toggleSlideMenu(menuItem: MenuItem?)
 }
