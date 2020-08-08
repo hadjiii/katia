@@ -71,7 +71,7 @@ class DiscussionController: UICollectionViewController, UICollectionViewDelegate
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! DiscussionCell
         
         cell.backgroundColor = UIColor(red: 36/255, green: 52/255, blue: 71/255, alpha: 1)
-        cell.name.text = discussion.senderId == currentUser.id ? Data.getUser(id: discussion.recipientId)?.name : Data.getUser(id: discussion.senderId)?.name
+        cell.name.text = discussion.senderId == currentUser.id ? Data.getUser(id: discussion.recipientId)?.username : Data.getUser(id: discussion.senderId)?.username
         cell.message.text = discussion.text
         cell.date.text = discussion.date
 
@@ -86,13 +86,13 @@ class DiscussionController: UICollectionViewController, UICollectionViewDelegate
         
         if discussion.senderId == currentUser.id {
             messageController.userId = discussion.recipientId
-            let name = Data.getUser(id: discussion.recipientId)?.name
-            messageController.userName = name
+            let username = Data.getUser(id: discussion.recipientId)?.username
+            messageController.userName = username
         }
         else {
             messageController.userId = discussion.senderId
-            let name = Data.getUser(id: discussion.senderId)?.name
-            messageController.userName = name
+            let username = Data.getUser(id: discussion.senderId)?.username
+            messageController.userName = username
         }
     }
     
