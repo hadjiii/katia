@@ -17,6 +17,15 @@ class ContainerViewController: UIViewController {
         setupCurrentController()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if !UserService.shared.isLoggedIn() {
+            let loginController = LoginController()
+            present(loginController, animated: true, completion: nil)
+        }
+    }
+    
     func setupCurrentController() {
         currentViewController = CustomTabBarController()
         currentViewController.menuDelegate = self
@@ -54,10 +63,11 @@ extension ContainerViewController: ContainerDelegate {
             }, completion: { complete in
                 switch menuItem {
                 case .Profile:
-                    print("Proifle...")
+                    print("Profile...")
                 case .Settings:
                     print("Settings...")
                 case .Logout:
+                    UserService.shared.logout()
                     let loginController = LoginController()
                     self.present(loginController, animated: true, completion: nil)
                 case .none:
