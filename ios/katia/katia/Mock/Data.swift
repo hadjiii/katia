@@ -123,10 +123,10 @@ class Data: NSObject {
     }
     
     static var users = [
-        User(id: 1, name: "Me"),
-        User(id: 2, name: "User2"),
-        User(id: 3, name: "User3"),
-        User(id: 4, name: "User4"),
+        User(id: 1, username: "Me", password: "test", confirmPassword: "test"),
+        User(id: 2, username: "User2", password: "test", confirmPassword: "test"),
+        User(id: 3, username: "User3", password: "test", confirmPassword: "test"),
+        User(id: 4, username: "User4", password: "test", confirmPassword: "test")
     ]
     
     static func getCurrentUser() -> User {
@@ -138,20 +138,26 @@ class Data: NSObject {
     }
     
     static func addUser(_ user: inout User) {
-        let id = users.capacity + 1
-        user.id = id
-        users.append(user)
+        if !users.contains(where: {$0.username == user.username}) {
+            let id = users.capacity + 1
+            user.id = id
+            users.append(user)
+        }
     }
     
     static func getUser(id: Int) -> User? {
         return users.filter({$0.id == id}).first
     }
     
-    static func getUsers(name: String) -> [User]{
-        return users.filter({$0.name == name})
+    static func getUser(username: String, password: String) -> User? {
+        return users.filter({$0.username == username && $0.password == password}).first
+    }
+    
+    static func getUsers(username: String) -> [User]{
+        return users.filter({$0.username == username})
     }
     
     static func getUsers(keyword: String) -> [User] {
-        return users.filter({$0.name.lowercased().contains(keyword.lowercased())})
+        return users.filter({$0.username.lowercased().contains(keyword.lowercased())})
     }
 }
