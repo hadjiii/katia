@@ -47,7 +47,7 @@ class NewDiscussionController: UICollectionViewController, UICollectionViewDeleg
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! NewDiscussionCell
         cell.backgroundColor = UIColor(red: 36/255, green: 52/255, blue: 71/255, alpha: 1)
-        cell.name.text = user.name
+        cell.name.text = user.username
         return cell
     }
     
@@ -65,7 +65,7 @@ class NewDiscussionController: UICollectionViewController, UICollectionViewDeleg
         let layout = UICollectionViewFlowLayout()
         let messageController = MessageController(collectionViewLayout: layout)
         messageController.userId = user.id
-        messageController.userName = user.name
+        messageController.userName = user.username
         navigationController?.pushViewController(messageController, animated: false)
     }
     
