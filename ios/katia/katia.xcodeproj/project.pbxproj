@@ -39,6 +39,7 @@
 		0F9F500224BFA40D00165A60 /* StoryMediaPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F500124BFA40C00165A60 /* StoryMediaPreviewController.swift */; };
 		0FA4389124D1D53A00B6D744 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA4389024D1D53A00B6D744 /* LoginController.swift */; };
 		0FAFDB7D24DE63F300CF8EFB /* DataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFDB7C24DE63F300CF8EFB /* DataError.swift */; };
+		0FAFDB8524DE690600CF8EFB /* UserServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAFDB8424DE690600CF8EFB /* UserServiceTest.swift */; };
 		0FB6F30124D9F4090025CEA3 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB6F30024D9F4090025CEA3 /* MenuController.swift */; };
 		0FB6F30324DA23470025CEA3 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB6F30224DA23470025CEA3 /* ContainerViewController.swift */; };
 		0FB6F30524DA253B0025CEA3 /* ContainerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB6F30424DA253B0025CEA3 /* ContainerDelegate.swift */; };
@@ -47,6 +48,16 @@
 		0FC8CB4B24CF96D600F86767 /* NewDiscussionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC8CB4A24CF96D600F86767 /* NewDiscussionCell.swift */; };
 		0FC8CB4D24CF9AAA00F86767 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC8CB4C24CF9AAA00F86767 /* User.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0FAFDB8724DE690600CF8EFB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0F9F4FA224B4947D00165A60 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0F9F4FA924B4947D00165A60;
+			remoteInfo = katia;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0F04994F24DDB89A00DBECDE /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
@@ -83,6 +94,9 @@
 		0F9F500124BFA40C00165A60 /* StoryMediaPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryMediaPreviewController.swift; sourceTree = "<group>"; };
 		0FA4389024D1D53A00B6D744 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		0FAFDB7C24DE63F300CF8EFB /* DataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataError.swift; sourceTree = "<group>"; };
+		0FAFDB8224DE690600CF8EFB /* katiaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = katiaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FAFDB8424DE690600CF8EFB /* UserServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceTest.swift; sourceTree = "<group>"; };
+		0FAFDB8624DE690600CF8EFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0FB6F30024D9F4090025CEA3 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		0FB6F30224DA23470025CEA3 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		0FB6F30424DA253B0025CEA3 /* ContainerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +108,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		0F9F4FA724B4947D00165A60 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0FAFDB7F24DE690600CF8EFB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -116,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				0F9F4FAC24B4947D00165A60 /* katia */,
+				0FAFDB8324DE690600CF8EFB /* katiaTests */,
 				0F9F4FAB24B4947D00165A60 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -124,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				0F9F4FAA24B4947D00165A60 /* katia.app */,
+				0FAFDB8224DE690600CF8EFB /* katiaTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -230,6 +253,15 @@
 			path = Mock;
 			sourceTree = "<group>";
 		};
+		0FAFDB8324DE690600CF8EFB /* katiaTests */ = {
+			isa = PBXGroup;
+			children = (
+				0FAFDB8424DE690600CF8EFB /* UserServiceTest.swift */,
+				0FAFDB8624DE690600CF8EFB /* Info.plist */,
+			);
+			path = katiaTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -250,6 +282,24 @@
 			productReference = 0F9F4FAA24B4947D00165A60 /* katia.app */;
 			productType = "com.apple.product-type.application";
 		};
+		0FAFDB8124DE690600CF8EFB /* katiaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0FAFDB8924DE690600CF8EFB /* Build configuration list for PBXNativeTarget "katiaTests" */;
+			buildPhases = (
+				0FAFDB7E24DE690600CF8EFB /* Sources */,
+				0FAFDB7F24DE690600CF8EFB /* Frameworks */,
+				0FAFDB8024DE690600CF8EFB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0FAFDB8824DE690600CF8EFB /* PBXTargetDependency */,
+			);
+			name = katiaTests;
+			productName = katiaTests;
+			productReference = 0FAFDB8224DE690600CF8EFB /* katiaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -262,6 +312,10 @@
 				TargetAttributes = {
 					0F9F4FA924B4947D00165A60 = {
 						CreatedOnToolsVersion = 11.3.1;
+					};
+					0FAFDB8124DE690600CF8EFB = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 0F9F4FA924B4947D00165A60;
 					};
 				};
 			};
@@ -279,6 +333,7 @@
 			projectRoot = "";
 			targets = (
 				0F9F4FA924B4947D00165A60 /* katia */,
+				0FAFDB8124DE690600CF8EFB /* katiaTests */,
 			);
 		};
 /* End PBXProject section */
@@ -291,6 +346,13 @@
 				0F9F4FBA24B4947F00165A60 /* LaunchScreen.storyboard in Resources */,
 				0F9F4FB724B4947F00165A60 /* Assets.xcassets in Resources */,
 				0F9F4FB524B4947D00165A60 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0FAFDB8024DE690600CF8EFB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,7 +402,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0FAFDB7E24DE690600CF8EFB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0FAFDB8524DE690600CF8EFB /* UserServiceTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0FAFDB8824DE690600CF8EFB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0F9F4FA924B4947D00165A60 /* katia */;
+			targetProxy = 0FAFDB8724DE690600CF8EFB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0F9F4FB324B4947D00165A60 /* Main.storyboard */ = {
@@ -512,6 +590,46 @@
 			};
 			name = Release;
 		};
+		0FAFDB8A24DE690600CF8EFB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R42ZGV5Y3Q;
+				INFOPLIST_FILE = katiaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hadji.katiaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/katia.app/katia";
+			};
+			name = Debug;
+		};
+		0FAFDB8B24DE690600CF8EFB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R42ZGV5Y3Q;
+				INFOPLIST_FILE = katiaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hadji.katiaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/katia.app/katia";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -529,6 +647,15 @@
 			buildConfigurations = (
 				0F9F4FBF24B4947F00165A60 /* Debug */,
 				0F9F4FC024B4947F00165A60 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0FAFDB8924DE690600CF8EFB /* Build configuration list for PBXNativeTarget "katiaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0FAFDB8A24DE690600CF8EFB /* Debug */,
+				0FAFDB8B24DE690600CF8EFB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
