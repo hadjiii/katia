@@ -21,7 +21,7 @@ class UserService {
             return Result.success(user)
         }
         
-        return Result.failure(.notFound)
+        return Result.failure(.exists)
     }
     
     func login(username: String, password: String)  -> Result<User, DataError> {
@@ -38,7 +38,7 @@ class UserService {
             }
         }
         
-        return Result.failure(.exists)
+        return Result.failure(.notFound)
     }
     
     func logout() {
