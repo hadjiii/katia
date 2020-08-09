@@ -106,8 +106,9 @@ class Data: NSObject {
         Message(id: 8, senderId: 1, recipientId: 3, text: "Hello!!!", date: "Saturday, 19 AM"),
     ]
     
-    static func addMessage(_ message: Message) {
+    static func addMessage(_ message: Message) -> Int? {
         messages.append(message)
+        return messages.last?.id
     }
     
     static func getMessagesWithUserId(_ userId: Int) -> [Message] {
