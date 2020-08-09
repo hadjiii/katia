@@ -57,4 +57,9 @@ class UserService {
     func isLoggedIn() -> Bool {
         UserDefaults.standard.bool(forKey: "isLoggedIn")
     }
+    
+    func getCurrentUser() throws -> User {
+        let user = try UserDefaults.standard.getCustomObject(forKey: "currentUser", castTo: User.self)
+        return user
+    }
 }
