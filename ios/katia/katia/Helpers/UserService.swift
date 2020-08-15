@@ -62,4 +62,14 @@ class UserService {
         let user = try UserDefaults.standard.getCustomObject(forKey: "currentUser", castTo: User.self)
         return user
     }
+    
+    func fetchUsers() -> Result<[User], DataError> {
+        let users = Data.getUsers()
+        return Result.success(users)
+    }
+    
+    func fetchUsersWith(keyword: String) -> Result<[User], DataError> {
+        let users = Data.getUsers(keyword: keyword)
+        return Result.success(users)
+    }
 }
