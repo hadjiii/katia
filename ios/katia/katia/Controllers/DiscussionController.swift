@@ -11,7 +11,7 @@ import UIKit
 private let reuseIdentifier = "discussionCell"
 
 class DiscussionController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-    var currentUser = Data.getCurrentUser()
+    var currentUser: User?
     var discussions = [Message]()
     
     override func viewDidLoad() {
@@ -41,8 +41,8 @@ class DiscussionController: UICollectionViewController, UICollectionViewDelegate
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        discussions = Data.getDiscussions()
-        collectionView.reloadData()
+        getCurrentUser()
+        fetchDiscussions()
     }
     
     let newDiscussionButton: UIButton = {
@@ -65,16 +65,16 @@ class DiscussionController: UICollectionViewController, UICollectionViewDelegate
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return discussions.capacity
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let discussion = self.discussions[indexPath.item]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! DiscussionCell
         
         cell.backgroundColor = UIColor(red: 36/255, green: 52/255, blue: 71/255, alpha: 1)
-        cell.name.text = discussion.senderId == currentUser.id ? Data.getUser(id: discussion.recipientId)?.username : Data.getUser(id: discussion.senderId)?.username
+        cell.name.text = discussion.senderId == currentUser?.id ? Data.getUser(id: discussion.recipientId)?.username : Data.getUser(id: discussion.senderId)?.username
         cell.message.text = discussion.text
         cell.date.text = discussion.date
-
+        
         return cell
     }
     
@@ -84,7 +84,7 @@ class DiscussionController: UICollectionViewController, UICollectionViewDelegate
         let messageController = MessageController(collectionViewLayout: layout)
         navigationController?.pushViewController(messageController, animated: true)
         
-        if discussion.senderId == currentUser.id {
+        if discussion.senderId == currentUser?.id {
             messageController.userId = discussion.recipientId
             let username = Data.getUser(id: discussion.recipientId)?.username
             messageController.userName = username
@@ -103,5 +103,28 @@ class DiscussionController: UICollectionViewController, UICollectionViewDelegate
     @objc func toggleSlideMenu() {
         let customTabBarController = tabBarController as! CustomTabBarController
         customTabBarController.toggleSlideMenu()
+    }
+    
+    private func getCurrentUser() {
+        do {
+            currentUser = try UserService.shared.getCurrentUser()
+        }
+        catch let error {
+            print("getCurrentUserError: \(error)")
+        }
+    }
+    
+    private func fetchDiscussions() {
+        guard let currentUserId = currentUser?.id else {return}
+        
+        let result = MessageService.shared.fetchDiscussions(for: currentUserId)
+        
+        switch result {
+        case .success(let discussions):
+            self.discussions = discussions
+            collectionView.reloadData()
+        case .failure(let error):
+            print(error)
+        }
     }
 }

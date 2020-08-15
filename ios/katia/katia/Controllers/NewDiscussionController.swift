@@ -10,7 +10,7 @@ import UIKit
 
 private let reuseIdentifier = "newDiscussionCell"
 class NewDiscussionController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
-    var users = Data.getUsers()
+    var users = [User]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +32,8 @@ class NewDiscussionController: UICollectionViewController, UICollectionViewDeleg
         searchBar.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         searchBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 10).isActive = true
         searchBar.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        self.fecthUsers()
     }
     
     let searchBar: UISearchBar = {
@@ -71,11 +73,33 @@ class NewDiscussionController: UICollectionViewController, UICollectionViewDeleg
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-            self.users = Data.getUsers()
+            self.fecthUsers()
         }
         else {
-            self.users = Data.getUsers(keyword: searchText)
+            self.fetchUsersWith(keyword: searchText)
         }
         self.collectionView.reloadData()
+    }
+    
+    private func fecthUsers() {
+        let result = UserService.shared.fetchUsers()
+        
+        switch result {
+        case .success(let users):
+            self.users = users
+        case .failure(_):
+            print("fetch users error")
+        }
+    }
+    
+    private func fetchUsersWith(keyword: String) {
+        let result = UserService.shared.fetchUsersWith(keyword: keyword)
+        
+        switch result {
+        case .success(let users):
+            self.users = users
+        case .failure(_):
+            print("fetch users with keyword error")
+        }
     }
 }

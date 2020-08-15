@@ -17,7 +17,15 @@ private let messageMediaViewMaxHeight = 130
 class MessageController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     var userId: Int? {
         didSet {
-            messages = Data.getMessagesWithUserId(userId!)
+            guard let userId = userId else {return}
+            let result = MessageService.shared.fetchMessages(for: userId)
+            
+            switch result {
+            case .success(let messages):
+                self.messages = messages
+            case .failure(_):
+                print("fetch message error")
+            }
         }
     }
     var messages = [Message]()
@@ -314,8 +322,17 @@ extension MessageController {
             guard let userId = userId else { return }
             
             let message = Message(id: 11, senderId: 1, recipientId: userId, text: messageTextTrimmed, date: "today")
-            Data.addMessage(message)
-            messages = Data.getMessagesWithUserId(userId)
+            MessageService.shared.sendMessage(message)
+            
+            let result = MessageService.shared.fetchMessages(for: userId)
+            
+            switch result {
+            case .success(let messages):
+                self.messages = messages
+            case .failure(_):
+                print("fetch message error")
+            }
+            
             let item = messages.count - 1
             collectionView.insertItems(at: [IndexPath(item: item, section: 0)])
             collectionView.scrollToItem(at: IndexPath(item: item, section: 0), at: .bottom, animated: true)
