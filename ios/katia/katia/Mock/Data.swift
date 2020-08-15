@@ -115,12 +115,13 @@ class Data: NSObject {
         return messages.filter({$0.senderId == userId || $0.recipientId == userId})
     }
     
-    static func getDiscussions() -> [Message] {
-        let groupedDiscussion = Dictionary.init(grouping: messages) { (message) -> Int in
+    static func getDiscussionsForUserId(_ userId: Int) -> [Message] {
+        let filteredMessages = messages.filter({$0.recipientId == userId || $0.senderId == userId})
+        let groupedDiscussions = Dictionary.init(grouping: filteredMessages) { (message) -> Int in
             return message.senderId + message.recipientId
         }
-        
-        return groupedDiscussion.map({$0.value.last!}) 
+
+        return groupedDiscussions.map({$0.value.last!})
     }
     
     static var users = [
