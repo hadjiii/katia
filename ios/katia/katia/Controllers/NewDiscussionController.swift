@@ -15,10 +15,12 @@ class NewDiscussionController: UICollectionViewController, UICollectionViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "New discussion"
+        
         edgesForExtendedLayout = []
         collectionView.register(NewDiscussionCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.backgroundColor = UIColor(red: 20/255, green: 29/255, blue: 38/255, alpha: 1)
-        collectionView.contentInset = UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.scrollDirection = .vertical
@@ -30,7 +32,7 @@ class NewDiscussionController: UICollectionViewController, UICollectionViewDeleg
         view.addSubview(searchBar)
         searchBar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         searchBar.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        searchBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 10).isActive = true
+        searchBar.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         searchBar.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         self.fecthUsers()
@@ -38,8 +40,11 @@ class NewDiscussionController: UICollectionViewController, UICollectionViewDeleg
     
     let searchBar: UISearchBar = {
         let sb = UISearchBar()
+        sb.barTintColor = UIColor(red: 20/255, green: 29/255, blue: 38/255, alpha: 1)
+        let searchBarTextField = sb.value(forKey: "searchField") as? UITextField
+        searchBarTextField?.textColor = .white
         sb.translatesAutoresizingMaskIntoConstraints = false
-        sb.placeholder = "Search an user"
+        sb.placeholder = "Search a user"
         sb.backgroundColor = .black
         return sb
     }()
