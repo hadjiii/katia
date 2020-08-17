@@ -91,7 +91,7 @@ class MessageCell: UICollectionViewCell {
     let bubble: UIView = {
         let msg = UIView()
         msg.translatesAutoresizingMaskIntoConstraints = false
-        msg.backgroundColor = UIColor(red: 101/255, green: 119/255, blue: 134/255, alpha: 1)
+        msg.backgroundColor = UIColor(red: 61/255, green: 84/255, blue: 102/255, alpha: 1)
         msg.layer.cornerRadius = 10
         msg.layer.masksToBounds = true
         return msg
@@ -111,7 +111,7 @@ class MessageCell: UICollectionViewCell {
     lazy var date: UILabel = {
         let dt = UILabel()
         dt.text = "Saturday, 19 AM"
-        dt.textColor = UIColor(red: 101/255, green: 119/255, blue: 134/255, alpha: 1)
+        dt.textColor = UIColor(red: 61/255, green: 84/255, blue: 102/255, alpha: 1)
         dt.translatesAutoresizingMaskIntoConstraints = false
         return dt
     }()
