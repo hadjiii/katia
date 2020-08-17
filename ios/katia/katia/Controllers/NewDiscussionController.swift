@@ -1,0 +1,110 @@
+//
+//  NewDiscussionController.swift
+//  katia
+//
+//  Created by Hadji on 28/07/2020.
+//  Copyright © 2020 Hadji. All rights reserved.
+//
+
+import UIKit
+
+private let reuseIdentifier = "newDiscussionCell"
+class NewDiscussionController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
+    var users = [User]()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        navigationItem.title = "New discussion"
+        
+        edgesForExtendedLayout = []
+        collectionView.register(NewDiscussionCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.backgroundColor = UIColor(red: 20/255, green: 29/255, blue: 38/255, alpha: 1)
+        collectionView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
+        
+        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.scrollDirection = .vertical
+            flowLayout.minimumLineSpacing = 0
+        }
+        
+        searchBar.delegate = self
+        
+        view.addSubview(searchBar)
+        searchBar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        searchBar.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        searchBar.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        searchBar.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        self.fecthUsers()
+    }
+    
+    let searchBar: UISearchBar = {
+        let sb = UISearchBar()
+        sb.barTintColor = UIColor(red: 20/255, green: 29/255, blue: 38/255, alpha: 1)
+        let searchBarTextField = sb.value(forKey: "searchField") as? UITextField
+        searchBarTextField?.textColor = .white
+        sb.translatesAutoresizingMaskIntoConstraints = false
+        sb.placeholder = "Search a user"
+        sb.backgroundColor = .black
+        return sb
+    }()
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let user = users[indexPath.item]
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! NewDiscussionCell
+        cell.backgroundColor = UIColor(red: 36/255, green: 52/255, blue: 71/255, alpha: 1)
+        cell.name.text = user.username
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 70)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return users.count
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let user = users[indexPath.item]
+        
+        let layout = UICollectionViewFlowLayout()
+        let messageController = MessageController(collectionViewLayout: layout)
+        messageController.userId = user.id
+        messageController.userName = user.username
+        navigationController?.pushViewController(messageController, animated: false)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            self.fecthUsers()
+        }
+        else {
+            self.fetchUsersWith(keyword: searchText)
+        }
+        self.collectionView.reloadData()
+    }
+    
+    private func fecthUsers() {
+        let result = UserService.shared.fetchUsers()
+        
+        switch result {
+        case .success(let users):
+            self.users = users
+        case .failure(_):
+            print("fetch users error")
+        }
+    }
+    
+    private func fetchUsersWith(keyword: String) {
+        let result = UserService.shared.fetchUsersWith(keyword: keyword)
+        
+        switch result {
+        case .success(let users):
+            self.users = users
+        case .failure(_):
+            print("fetch users with keyword error")
+        }
+    }
+}
