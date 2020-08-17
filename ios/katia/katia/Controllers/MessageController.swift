@@ -36,6 +36,8 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
             messageMediaViewHeightAnchor?.isActive = true
             imageButtonWidthAnchor?.constant = 0
             messageMediaView.fetchImage(asset: messageMedia!, contentMode: .aspectFit, targetSize: messageMediaView.frame.size)
+            
+            handleSendButtonIsEnabled()
         }
     }
     
@@ -44,6 +46,8 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
             navigationItem.title = userName
         }
     }
+    
+    let messageTextViewPlaceholder = "Start a message"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -152,10 +156,9 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
         return container
     }()
     
-    let messageTextView: UITextView = {
+    lazy var messageTextView: UITextView = {
         let textView = UITextView()
-        textView.text = "Start a message"
-        textView.textColor = .white
+        textView.attributedText = NSAttributedString(string: "Start a message", attributes: [NSAttributedString.Key.foregroundColor : UIColor(red: 61/255, green: 84/255, blue: 102/255, alpha: 1)])
         textView.backgroundColor = UIColor(red: 20/255, green: 29/255, blue: 38/255, alpha: 1)
         textView.font = UIFont.preferredFont(forTextStyle: .subheadline)
         textView.translatesAutoresizingMaskIntoConstraints = false
@@ -164,6 +167,7 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
     
     let sendButton: UIButton = {
         let button = UIButton()
+        button.isEnabled = false
         button.setImage(UIImage(named: "normal/send")?.withTintColor(UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1)), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor(red: 36/255, green: 52/255, blue: 71/255, alpha: 1)
@@ -257,8 +261,8 @@ class MessageController: UICollectionViewController, UICollectionViewDelegateFlo
             cell.dateRightAnchor?.isActive = false
             cell.dateLeftAnchor?.isActive = true
             cell.date.textAlignment = .left
-            cell.bubble.backgroundColor = UIColor(red: 101/255, green: 119/255, blue: 134/255, alpha: 1)
-            cell.text.backgroundColor = UIColor(red: 101/255, green: 119/255, blue: 134/255, alpha: 1)
+            cell.bubble.backgroundColor = UIColor(red: 61/255, green: 84/255, blue: 102/255, alpha: 1)
+            cell.text.backgroundColor = UIColor(red: 61/255, green: 84/255, blue: 102/255, alpha: 1)
             cell.destAvatar.isHidden = false
         }
         
@@ -283,6 +287,35 @@ extension MessageController: UITextViewDelegate {
         let containerHeight = (estimatedHeight > maxHeight ? maxHeight : estimatedHeight) + 20
         containerHeightAnchor?.constant = (messageMediaViewHeightAnchor!.isActive ? containerHeight + 130 : containerHeight)
         messageTextViewHeightAnchor!.constant = containerHeight - 20
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let currentText: NSString = textView.text as! NSString
+        let updatedText = currentText.replacingCharacters(in: range, with:text)
+        
+        if updatedText.isEmpty {
+            textView.text = self.messageTextViewPlaceholder
+            textView.textColor = UIColor(red: 61/255, green: 84/255, blue: 102/255, alpha: 1)
+            textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
+            
+            handleSendButtonIsEnabled()
+            
+            return false
+        }
+        else if textView.textColor == UIColor(red: 61/255, green: 84/255, blue: 102/255, alpha: 1) && !text.isEmpty {
+            textView.text = nil
+            textView.textColor = .white
+        }
+        
+        return true
+    }
+    
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        if self.view.window != nil {
+            if textView.textColor == UIColor.lightGray {
+                textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
+            }
+        }
     }
 }
 
@@ -361,5 +394,16 @@ extension MessageController {
         messageTextViewHeightAnchor!.constant = containerHeight - 20
         messageMediaViewHeightAnchor?.isActive = false
         imageButtonWidthAnchor?.constant = 20
+        
+        handleSendButtonIsEnabled()
+    }
+    
+    fileprivate func handleSendButtonIsEnabled() {
+        if messageTextView.text.isEmpty && messageMediaViewHeightAnchor?.isActive == false {
+            sendButton.isEnabled = false
+        }
+        else {
+            sendButton.isEnabled = true
+        }
     }
 }
