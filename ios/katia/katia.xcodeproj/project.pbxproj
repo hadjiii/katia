@@ -13,6 +13,7 @@
 		0F04995624DE432A00DBECDE /* ObjectSavable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F04995524DE432A00DBECDE /* ObjectSavable.swift */; };
 		0F04995924DE47E800DBECDE /* ObjectSavableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F04995824DE47E800DBECDE /* ObjectSavableError.swift */; };
 		0F2305C124CB27D600F9D7F2 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2305C024CB27D600F9D7F2 /* Message.swift */; };
+		0F53652C24E8F19D00A02A27 /* UIImage+resizeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F53652B24E8F19D00A02A27 /* UIImage+resizeImage.swift */; };
 		0F9F4FAE24B4947D00165A60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FAD24B4947D00165A60 /* AppDelegate.swift */; };
 		0F9F4FB024B4947D00165A60 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9F4FAF24B4947D00165A60 /* SceneDelegate.swift */; };
 		0F9F4FB524B4947D00165A60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F9F4FB324B4947D00165A60 /* Main.storyboard */; };
@@ -67,6 +68,7 @@
 		0F04995524DE432A00DBECDE /* ObjectSavable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectSavable.swift; sourceTree = "<group>"; };
 		0F04995824DE47E800DBECDE /* ObjectSavableError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectSavableError.swift; sourceTree = "<group>"; };
 		0F2305C024CB27D600F9D7F2 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		0F53652B24E8F19D00A02A27 /* UIImage+resizeImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+resizeImage.swift"; sourceTree = "<group>"; };
 		0F9F4FAA24B4947D00165A60 /* katia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = katia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F9F4FAD24B4947D00165A60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F9F4FAF24B4947D00165A60 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 			children = (
 				0F9F4FD924B6D2AD00165A60 /* UIImageView+fetchImage.swift */,
 				0F04995324DE42CB00DBECDE /* UserDefaults+ObjectSavable.swift */,
+				0F53652B24E8F19D00A02A27 /* UIImage+resizeImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				0F9F4FED24B9205A00165A60 /* ShowStoryController.swift in Sources */,
 				0F9F4FD724B66FA700165A60 /* MessageMediaCell.swift in Sources */,
 				0F9F500024BE5F4000165A60 /* Data.swift in Sources */,
+				0F53652C24E8F19D00A02A27 /* UIImage+resizeImage.swift in Sources */,
 				0FB6F30524DA253B0025CEA3 /* ContainerDelegate.swift in Sources */,
 				0FC8CB4924CF8B0700F86767 /* NewDiscussionController.swift in Sources */,
 				0FC1D1DD24E05FEC003EB4D7 /* MessageService.swift in Sources */,
