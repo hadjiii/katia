@@ -10,7 +10,7 @@ import UIKit
 
 private let reuseIdentifier = "discussionCell"
 
-class DiscussionController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class DiscussionController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
     var currentUser: User?
     var discussions = [Message]()
     
@@ -18,10 +18,22 @@ class DiscussionController: UICollectionViewController, UICollectionViewDelegate
         super.viewDidLoad()
         
         navigationItem.title = "Discussions"
-        let menuImage = UIImage.init(systemName: "flame.fill", withConfiguration: nil)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: menuImage, style: .plain, target: self, action: #selector(toggleSlideMenu))
+        
+        let avatarButton = UIButton()
+        avatarButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        let avatarImage = UIImage(named: "splash")
+        let resizedAvatarImage = avatarImage?.resize(targetSize: CGSize(width: 30, height: 30))
+        avatarButton.setImage(resizedAvatarImage, for: .normal)
+        avatarButton.imageView?.contentMode = .scaleAspectFit
+        avatarButton.layer.cornerRadius = 15
+        avatarButton.layer.masksToBounds = true
+        avatarButton.addTarget(self, action: #selector(toggleSlideMenu), for: .touchUpInside)
+        
+        let avatarButtonItem = UIBarButtonItem(customView: avatarButton)
+        navigationItem.leftBarButtonItem = avatarButtonItem
         
         collectionView.backgroundColor = UIColor(red: 20/255, green: 29/255, blue: 38/255, alpha: 1)
+        collectionView.contentInset = UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
         
         // Register cell classes
         self.collectionView!.register(DiscussionCell.self, forCellWithReuseIdentifier: reuseIdentifier)
@@ -30,6 +42,19 @@ class DiscussionController: UICollectionViewController, UICollectionViewDelegate
             flowLayout.scrollDirection = .vertical
             flowLayout.minimumLineSpacing = 0
         }
+        
+        searchBar.delegate = self
+        
+        view.addSubview(searchBar)
+        searchBar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        searchBar.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        searchBar.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        searchBar.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        
+        view.addSubview(searchBarBottomBorder)
+        searchBarBottomBorder.bottomAnchor.constraint(equalTo: searchBar.bottomAnchor).isActive = true
+        searchBarBottomBorder.heightAnchor.constraint(equalToConstant: 0.3).isActive = true
+        searchBarBottomBorder.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         
         view.addSubview(newDiscussionButton)
         newDiscussionButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
@@ -41,20 +66,79 @@ class DiscussionController: UICollectionViewController, UICollectionViewDelegate
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        setupNavigationBar()
+        
         getCurrentUser()
         fetchDiscussions()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        searchBar.endEditing(true)
+        
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    let searchBar: UISearchBar = {
+        let sb = UISearchBar()
+        sb.barTintColor = UIColor(red: 36/255, green: 52/255, blue: 71/255, alpha: 1)
+
+        let searchBarTextField = sb.value(forKey: "searchField") as? UITextField
+        searchBarTextField?.textColor = .white
+        searchBarTextField?.backgroundColor = UIColor(red: 20/255, green: 29/255, blue: 38/255, alpha: 1)
+        
+        sb.translatesAutoresizingMaskIntoConstraints = false
+        sb.placeholder = "Search a user in your discussions"
+        sb.backgroundColor = .black
+        return sb
+    }()
+    
+    let searchBarBottomBorder:  UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor(red: 101/255, green: 119/255, blue: 134/255, alpha: 1)
+        return view
+    }()
+    
     let newDiscussionButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "selected/plus.bubble")?.withTintColor(.white), for: .normal)
+        let button = UIButton()
+        button.setImage(UIImage(named: "normal/plus.bubble")?.withTintColor(.white), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1)
+        button.tintColor = .white
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 28
         button.addTarget(self, action: #selector(newDiscussion), for: .touchDown)
         return button
     }()
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            //self.fecthUsers()
+        }
+        else {
+            //self.fetchUsersWith(keyword: searchText)
+        }
+        self.collectionView.reloadData()
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        view.backgroundColor = .green
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.endEditing(true)
+        searchBar.showsCancelButton = false
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
     
     @objc func newDiscussion() {
         let layout = UICollectionViewFlowLayout()
@@ -126,5 +210,17 @@ class DiscussionController: UICollectionViewController, UICollectionViewDelegate
         case .failure(let error):
             print(error)
         }
+    }
+    
+    private func setupNavigationBar() {
+        let navigationBar = navigationController?.navigationBar
+        
+        navigationBar?.barTintColor = UIColor(red: 36/255, green: 52/255, blue: 71/255, alpha: 1)
+        navigationBar?.tintColor = UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1)
+        navigationBar?.isTranslucent = false
+        navigationBar?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 20)]
+        
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
     }
 }
