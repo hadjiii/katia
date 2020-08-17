@@ -18,17 +18,20 @@ class DiscussionCell: UICollectionViewCell {
         photo.heightAnchor.constraint(equalToConstant: 50).isActive = true
         photo.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
-        addSubview(name)
-        name.leftAnchor.constraint(equalTo: photo.rightAnchor, constant: 10).isActive = true
-        name.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true
-        name.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        name.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
+        
         
         addSubview(date)
         date.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true
         date.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        date.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        //date.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        date.widthAnchor.constraint(greaterThanOrEqualToConstant: 10).isActive = true
         date.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
+        
+        addSubview(name)
+        name.leftAnchor.constraint(equalTo: photo.rightAnchor, constant: 10).isActive = true
+        name.rightAnchor.constraint(equalTo: date.leftAnchor, constant: -10).isActive = true
+        name.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        name.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
         
         addSubview(message)
         message.leftAnchor.constraint(equalTo: photo.rightAnchor, constant: 10).isActive = true
@@ -49,7 +52,6 @@ class DiscussionCell: UICollectionViewCell {
     
     let name: UILabel = {
         let label = UILabel()
-        label.text = "Username"
         label.textColor = .white
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -68,16 +70,16 @@ class DiscussionCell: UICollectionViewCell {
     let message: UILabel = {
         let label = UILabel()
         label.text = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
-        label.textColor = UIColor(red: 101/255, green: 119/255, blue: 134/255, alpha: 1)
+        label.textColor = UIColor(red: 136/255, green: 153/255, blue: 166/255, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let date: UILabel = {
         let label = UILabel()
-        label.text = "22h"
-        label.textColor = UIColor(red: 101/255, green: 119/255, blue: 134/255, alpha: 1)
+        label.textColor = UIColor(red: 136/255, green: 153/255, blue: 166/255, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .right
         return label
     }()
     
