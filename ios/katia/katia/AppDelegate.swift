@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UITabBar.appearance().barTintColor = UIColor(red: 36/255, green: 52/255, blue: 71/255, alpha: 1)
+        UITabBar.appearance().tintColor = UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1)
         UITabBar.appearance().isTranslucent = false
         
         let audioSession = AVAudioSession.sharedInstance()
