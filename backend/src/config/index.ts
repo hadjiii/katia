@@ -1,8 +1,8 @@
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
 
 export enum Env {
-  Development = "development",
-  Production = "production"
+  Development = 'development',
+  Production = 'production',
 }
 
 process.env.NODE_ENV = process.env.NODE_ENV || Env.Development;
@@ -18,10 +18,10 @@ export default {
   mongodb: {
     databaseURL: `${process.env.MONGODB_URI}`,
     username: `${process.env.MONGODB_USERNAME}`,
-    password: `${process.env.MONGODB_PASSWORD}`
+    password: `${process.env.MONGODB_PASSWORD}`,
   },
   jwtSecret: `${process.env.JWT_SECRET}`,
   logs: {
-    level: `${process.env.LOG_LEVEL}`
-  }
+    level: `${process.env.LOG_LEVEL}`,
+  },
 };
