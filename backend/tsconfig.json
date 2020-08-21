@@ -1,12 +1,25 @@
 {
   "compilerOptions": {
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/types"
+    ],
+    "moduleResolution": "node",
     "module": "commonjs",
     "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "outDir": "dist",
     "target": "ES6",
-    "strict": true
+    "strict": true,
+    "pretty": true,
+    "types": [
+      "./src/types"
+    ]
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": [
+    "node_modules",
+    "tests"
+  ]
 }
