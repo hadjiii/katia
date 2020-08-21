@@ -1,19 +1,24 @@
-import http from "http";
-import express from "express";
-import socketIO from "socket.io";
+import 'reflect-metadata';
+import config from './config';
+import http from 'http';
+import express from 'express';
+import socketIO from 'socket.io';
+import Logger from './loaders/logger';
 
-const app = express();
-const server = http.createServer(app);
-var io = socketIO(server);
+async function startServer() {
+  const app = express();
+  const server = http.createServer(app);
 
-app.get("/", function(req, res) {
-  res.send("Response from Katia backend");
-});
+  const loaders = await import('./loaders');
+  loaders.default({ expressApp: app });
 
-const port = process.env.port || 3000;
-server.listen(port);
-console.log(`Server started at port ${port}`);
+  server.listen(config.port);
+  Logger.info(`Server listening at port: ${config.port} 🚀`);
 
-io.on("connection", socket => {
-  console.log("new client", socket.id);
-});
+  const io = socketIO(server);
+  io.on('connection', (socket) => {
+    Logger.info(`New connection: ${socket.id}`);
+  });
+}
+
+startServer();
