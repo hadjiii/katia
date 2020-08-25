@@ -5,6 +5,7 @@ import { UserSchema } from './user';
 export const MessageSchema = new mongoose.Schema(
   {
     _id: Schema.Types.ObjectId,
+    discussion: { type: Schema.Types.ObjectId, ref: 'Discussion' },
     sender: { type: Schema.Types.ObjectId, ref: 'User' },
     content: {
       type: String,
