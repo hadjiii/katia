@@ -7,7 +7,6 @@ export interface IMedia {
 }
 
 export interface IMediaInputDTO {
-  userId: string;
-  owner: IUser;
+  owner: string;
   name: string;
 }
