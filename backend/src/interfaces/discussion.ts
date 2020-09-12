@@ -4,19 +4,26 @@ import { IMedia } from './media';
 
 export interface IDiscussion {
   _id: string;
-  name: string;
-  creator: IUser;
-  participants: [IUser];
+  type: string;
+  name?: string;
+  participant1: IUser;
+  participant2: IUser;
+  participants?: [IUser];
   messages: [IMessage];
   medias: [IMedia];
-  isGroup: boolean;
 }
 
 export interface IDiscussionInputDTO {
+  type: string;
+}
+
+export interface ISimpleDiscussionInputDTO extends IDiscussionInputDTO {
+  participant1: string;
+  participant2: string;
+}
+
+export interface IGroupDiscussionInputDTO extends IDiscussionInputDTO {
   name: string;
-  creator: IUser;
-  participants: [IUser];
-  messages: [IMessage];
-  medias: [IMedia];
-  isGroup: boolean;
+  creator: string;
+  participants: string[];
 }

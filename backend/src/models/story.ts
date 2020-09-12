@@ -4,7 +4,7 @@ import { IStory } from '../interfaces/story';
 export const StorySchema = new mongoose.Schema(
   {
     _id: Schema.Types.ObjectId,
-    owner: { type: Schema.Types.ObjectId, ref: 'User' },
+    user: { type: Schema.Types.ObjectId, ref: 'User' },
     media: { type: Schema.Types.ObjectId, ref: 'Media' },
   },
   { timestamps: true },

@@ -5,6 +5,7 @@
       "./src/types"
     ],
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "module": "commonjs",
     "esModuleInterop": true,
     "emitDecoratorMetadata": true,

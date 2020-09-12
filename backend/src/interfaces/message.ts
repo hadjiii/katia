@@ -1,17 +1,22 @@
 import { IUser } from './user';
-import { IMedia } from './media';
+import { IMedia, IMediaInputDTO } from './media';
+import { IDiscussion } from './discussion';
 
 export interface IMessage {
   _id: string;
+  discussion: IDiscussion;
   sender: IUser;
-  recipient: IUser;
-  content: string;
-  media: IMedia;
+  content: {
+    media?: IMedia,
+    text?: string
+  }
 }
 
 export interface IMessageInputDTO {
-  senderId: string;
-  recipientId: string;
-  content: string;
-  media: IMedia;
+  discussion: string;
+  sender: string;
+  content: {
+    media?: string
+    text?: string
+  }
 }

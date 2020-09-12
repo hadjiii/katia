@@ -6,6 +6,20 @@ import { IStory } from '../interfaces/story';
 import { IMedia } from '../interfaces/media';
 
 declare global {
+  export interface Error {
+    status?: number
+  }
+
+  namespace Express {
+    export interface Request {
+      token: any,
+      currentUser: Documents.User,
+      currentDiscussion: Documents.Discussion,
+      message: Documents.Message,
+      discussionId: string
+    }
+  }
+  
   namespace Models {
     export type User = Model<Documents.User>;
     export type Discussion = Model<Documents.Discussion>;

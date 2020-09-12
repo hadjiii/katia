@@ -1,14 +1,12 @@
 import { IUser } from './user';
-import { IMedia } from './media';
+import { IMedia, IMediaInputDTO } from './media';
 
 export interface IStory {
-  _id: string;
-  owner: IUser;
-  media: [IMedia];
+  user: IUser;
+  media: IMedia;
 }
 
 export interface IStoryInputDTO {
-  userId: string;
-  owner: IUser;
-  media: [IMedia];
+  user: string;
+  media: string;
 }
