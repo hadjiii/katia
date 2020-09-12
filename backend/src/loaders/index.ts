@@ -4,8 +4,6 @@ import expressLoader from './express';
 import Logger from './logger';
 import Container from 'typedi';
 import config from '../config';
-import {forkJoin, of, from, Observable} from 'rxjs';
-import {flatMap, map, switchMap, mergeMap} from 'rxjs/operators'
 
 export default async ({ expressApp }: { expressApp: express.Application }) => {
   const db = await mongooseLoader(config.mongodb.databaseURL);
@@ -19,7 +17,7 @@ export default async ({ expressApp }: { expressApp: express.Application }) => {
 
   Container.set('userModel', UserModel.default);
   Container.set('mediaModel', MediaModel.default);
-  Container.set('discussionModel', DiscussionModel.default);
+  Container.set('discussionModel', DiscussionModel.Discussion);
   Container.set('storyModel', StoryModel.default);
   Container.set('messageModel', MessageModel.default);
 
