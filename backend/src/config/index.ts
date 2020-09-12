@@ -14,6 +14,9 @@ if (dotEnvFound.error) {
 }
 
 export default {
+  api: {
+    prefix: '/api'
+  },
   port: parseInt(`${process.env.PORT}`, 10) || 3000,
   mongodb: {
     databaseURL: `${process.env.MONGODB_URI}`,
