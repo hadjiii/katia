@@ -8,5 +8,5 @@ export interface IStory {
 
 export interface IStoryInputDTO {
   user: string;
-  media: IMediaInputDTO;
+  media: string;
 }
